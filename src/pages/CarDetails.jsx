@@ -115,7 +115,7 @@ const CarDetails = () => {
 
       <CarDetailsInfoSections benefits={BENEFITS} car={selectedCar} specs={specs} topFeatures={topFeatures} />
 
-      {/* <CarDetailsEmiSection
+      <CarDetailsEmiSection
         carPrice={carPrice}
         emi={emi}
         formatNumber={formatNumber}
@@ -125,7 +125,7 @@ const CarDetails = () => {
         onLoanYearsChange={handleLoanYearsChange}
         safeDownPayment={safeDownPayment}
         totalPayable={totalPayable}
-      /> */}
+      />
 
       <CarDetailsSimilarSection cars={similarCars} />
       <CarDetailsExploreSection items={EXPLORE_MORE_ITEMS} />
