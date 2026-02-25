@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo } from 'react';
-import { FaChevronDown } from 'react-icons/fa';
+import { FaChevronDown, FaTimes } from 'react-icons/fa';
 import { useSearchParams } from 'react-router-dom';
 import CarFilters from '../components/car/CarFilters';
 import CarList from '../components/car/CarList';
@@ -30,6 +30,21 @@ const SearchResults = () => {
   }, [queryFromUrl, filters.query, searchCars]);
 
   const visibleCount = useMemo(() => filteredCars.length, [filteredCars.length]);
+  const appliedFilters = useMemo(() => {
+    const active = [];
+
+    if (filters.query.trim()) active.push({ key: 'query', label: `Search: "${filters.query.trim()}"` });
+    if (filters.brand) active.push({ key: 'brand', label: `Brand: ${filters.brand}` });
+    if (filters.fuelType) active.push({ key: 'fuelType', label: `Fuel: ${filters.fuelType}` });
+    if (filters.transmission) active.push({ key: 'transmission', label: `Transmission: ${filters.transmission}` });
+    if (filters.minYear) active.push({ key: 'minYear', label: `Year: ${filters.minYear}+` });
+    if (filters.maxKm) active.push({ key: 'maxKm', label: `KM: up to ${filters.maxKm.toLocaleString('en-IN')}` });
+    if (filters.maxPrice < 5000000) {
+      active.push({ key: 'maxPrice', label: `Price: up to Rs ${filters.maxPrice.toLocaleString('en-IN')}` });
+    }
+
+    return active;
+  }, [filters]);
 
   const handleSearch = useCallback((query) => {
     searchCars(query);
@@ -43,6 +58,26 @@ const SearchResults = () => {
     setSearchParams(nextParams);
   }, [searchCars, searchParams, setSearchParams]);
 
+  const handleRemoveFilter = useCallback((key) => {
+    if (key === 'query') {
+      handleSearch('');
+      return;
+    }
+
+    const resetByKey = {
+      brand: '',
+      fuelType: '',
+      transmission: '',
+      minYear: 0,
+      maxKm: 0,
+      maxPrice: 5000000,
+    };
+
+    if (Object.prototype.hasOwnProperty.call(resetByKey, key)) {
+      applyFilters({ [key]: resetByKey[key] });
+    }
+  }, [applyFilters, handleSearch]);
+
   return (
     <section className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
       <div className="mb-6 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
@@ -54,10 +89,32 @@ const SearchResults = () => {
 
         <div>
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
-            <p className="text-sm font-medium text-slate-600">
-              Showing <span className="font-bold text-slate-900">{visibleCount}</span> cars (page {pagination.page} of{' '}
-              {pagination.totalPages})
-            </p>
+            <div className="space-y-1">
+              <p className="text-sm font-medium text-slate-600">
+                Showing <span className="font-bold text-slate-900">{visibleCount}</span> cars (page {pagination.page} of{' '}
+                {pagination.totalPages})
+              </p>
+              {appliedFilters.length ? (
+                <div className="flex flex-wrap items-center gap-2">
+                  {appliedFilters.map((filter) => (
+                    <span
+                      key={filter.key}
+                      className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-slate-50 px-3 py-1 text-xs font-semibold text-slate-700"
+                    >
+                      {filter.label}
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveFilter(filter.key)}
+                        className="rounded-full text-slate-500 transition hover:text-slate-800"
+                        aria-label={`Remove ${filter.label} filter`}
+                      >
+                        <FaTimes className="text-[10px]" />
+                      </button>
+                    </span>
+                  ))}
+                </div>
+              ) : null}
+            </div>
 
             <div className="relative min-w-[220px]">
               <select
