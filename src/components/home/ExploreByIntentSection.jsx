@@ -58,10 +58,10 @@ const ExploreByIntentSection = () => {
 
   return (
     <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#190f31] via-[#151a45] to-[#10363f] p-4 pt-12 shadow-[0_20px_70px_rgba(0,0,0,0.35)] sm:p-6 sm:pt-14 md:p-8 md:pt-16">
+      <div className="relative overflow-visible rounded-3xl border border-white/10 bg-gradient-to-br from-[#190f31] via-[#151a45] to-[#10363f] p-4 pt-12 shadow-[0_20px_70px_rgba(0,0,0,0.35)] sm:p-6 sm:pt-14 md:p-8 md:pt-16">
         <div className="pointer-events-none absolute -left-20 top-8 h-64 w-64 rounded-full bg-fuchsia-500/20 blur-3xl" />
         <div className="pointer-events-none absolute -right-20 bottom-6 h-64 w-64 rounded-full bg-cyan-400/20 blur-3xl" />
-        <div className="absolute left-1/2 top-0 z-10 w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white p-1.5 shadow-lg">
+        <div className="absolute left-1/2 top-0 z-30 w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white p-1.5 shadow-lg">
           <div className="grid grid-cols-2 gap-1">
             <button
               type="button"

@@ -5,7 +5,7 @@ import { getSavedCars, removeSavedCar, SAVED_CARS_UPDATED_EVENT } from '../../ut
 
 const exploreItems = [
   'Price Range',
-  'Make and Model',
+  'Brand',
   'Year',
   'Fuel',
   'KM Driven',
@@ -14,6 +14,21 @@ const exploreItems = [
 ];
 
 const priceRangeItems = ['Under 3 Lakh', '3 - 4 Lakh', '4 - 5 Lakh', '5 - 6 Lakh', '6 - 8 Lakh', '8 - 10 Lakh', 'Above 10 Lakh'];
+const brandItems = ['Honda', 'Hyundai', 'Kia', 'Mahindra', 'Maruti', 'Skoda', 'Tata', 'Volkswagen'];
+const yearItems = ['2024 & above', '2022 & above', '2020 & above', '2018 & above', '2016 & above', '2014 & above', '2012 & above', '2010 & above'];
+const fuelItems = ['Petrol', 'Diesel', 'CNG'];
+const kmDrivenItems = [
+  '10,000 kms or less',
+  '30,000 kms or less',
+  '50,000 kms or less',
+  '75,000 kms or less',
+  '1,00,000 kms or less',
+  '1,25,000 kms or less',
+  '1,50,000 kms or less',
+  '1,75,000 kms or less',
+];
+const bodyTypeItems = ['Hatchback', 'Sedan', 'SUV', 'MUV'];
+const transmissionItems = ['Automatic', 'Manual'];
 
 const topLinkClass = ({ isActive }) =>
   `rounded-lg px-3 py-2 text-sm font-semibold transition ${
@@ -180,7 +195,7 @@ const Navbar = () => {
       </div>
 
       <div className="bg-[#1a1b42] text-white">
-        <div className="mx-auto flex w-full max-w-7xl items-center gap-2 overflow-x-auto px-4 py-2.5 sm:px-6 lg:px-8">
+        <div className="no-scrollbar mx-auto flex w-full max-w-7xl items-center gap-2 overflow-x-auto px-4 py-2.5 sm:px-6 lg:overflow-visible lg:px-8">
           <span className="shrink-0 pr-3 text-sm font-bold text-white/55">Explore By</span>
 
           {exploreItems.map((item) => (
@@ -196,15 +211,165 @@ const Navbar = () => {
                   </span>
                 </button>
 
-                <div className="invisible absolute left-0 top-full z-20 mt-1 min-w-[210px] origin-top scale-95 rounded-b-md rounded-tr-md bg-[#5a1691] py-3 opacity-0 shadow-xl transition duration-200 group-hover:visible group-hover:scale-100 group-hover:opacity-100">
+                <div className="invisible absolute left-0 top-full z-20 mt-1 min-w-[210px] origin-top scale-95 rounded-b-md rounded-tr-md border border-white/10 bg-[#1a1b42] py-3 opacity-0 shadow-xl transition duration-200 group-hover:visible group-hover:scale-100 group-hover:opacity-100">
                   {priceRangeItems.map((range) => (
                     <button
                       key={range}
                       type="button"
                       onClick={() => navigate(`/search?q=${encodeURIComponent(range)}`)}
-                      className="block w-full px-4 py-2 text-left text-[34px] font-semibold text-white transition hover:bg-white/10"
+                      className="block w-full px-4 py-2 text-left text-[18px] font-semibold text-white transition hover:bg-[#eaad2b]/15 hover:text-[#eaad2b]"
                     >
                       {range}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : item === 'Brand' ? (
+              <div key={item} className="group relative shrink-0">
+                <button
+                  type="button"
+                  onClick={() => navigate('/search')}
+                  className="rounded-md px-3 py-1.5 text-sm font-semibold text-white/95 transition hover:bg-white/10"
+                >
+                  <span className="inline-flex items-center gap-1">
+                    {item} <FaChevronDown className="h-3 w-3 transition group-hover:rotate-180" />
+                  </span>
+                </button>
+
+                <div className="invisible absolute left-0 top-full z-20 mt-1 min-w-[210px] origin-top scale-95 rounded-b-md rounded-tr-md border border-white/10 bg-[#1a1b42] py-3 opacity-0 shadow-xl transition duration-200 group-hover:visible group-hover:scale-100 group-hover:opacity-100">
+                  {brandItems.map((brand) => (
+                    <button
+                      key={brand}
+                      type="button"
+                      onClick={() => navigate(`/search?q=${encodeURIComponent(brand)}`)}
+                      className="block w-full px-4 py-2 text-left text-[18px] font-semibold text-white transition hover:bg-[#eaad2b]/15 hover:text-[#eaad2b]"
+                    >
+                      {brand}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : item === 'Year' ? (
+              <div key={item} className="group relative shrink-0">
+                <button
+                  type="button"
+                  onClick={() => navigate('/search')}
+                  className="rounded-md px-3 py-1.5 text-sm font-semibold text-white/95 transition hover:bg-white/10"
+                >
+                  <span className="inline-flex items-center gap-1">
+                    {item} <FaChevronDown className="h-3 w-3 transition group-hover:rotate-180" />
+                  </span>
+                </button>
+
+                <div className="invisible absolute left-0 top-full z-20 mt-1 min-w-[210px] origin-top scale-95 rounded-b-md rounded-tr-md border border-white/10 bg-[#1a1b42] py-3 opacity-0 shadow-xl transition duration-200 group-hover:visible group-hover:scale-100 group-hover:opacity-100">
+                  {yearItems.map((yearLabel) => (
+                    <button
+                      key={yearLabel}
+                      type="button"
+                      onClick={() => navigate(`/search?q=${encodeURIComponent(yearLabel)}`)}
+                      className="block w-full px-4 py-2 text-left text-[18px] font-semibold text-white transition hover:bg-[#eaad2b]/15 hover:text-[#eaad2b]"
+                    >
+                      {yearLabel}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : item === 'Fuel' ? (
+              <div key={item} className="group relative shrink-0">
+                <button
+                  type="button"
+                  onClick={() => navigate('/search')}
+                  className="rounded-md px-3 py-1.5 text-sm font-semibold text-white/95 transition hover:bg-white/10"
+                >
+                  <span className="inline-flex items-center gap-1">
+                    {item} <FaChevronDown className="h-3 w-3 transition group-hover:rotate-180" />
+                  </span>
+                </button>
+
+                <div className="invisible absolute left-0 top-full z-20 mt-1 min-w-[170px] origin-top scale-95 rounded-b-md rounded-tr-md border border-white/10 bg-[#1a1b42] py-3 opacity-0 shadow-xl transition duration-200 group-hover:visible group-hover:scale-100 group-hover:opacity-100">
+                  {fuelItems.map((fuelLabel) => (
+                    <button
+                      key={fuelLabel}
+                      type="button"
+                      onClick={() => navigate(`/search?q=${encodeURIComponent(fuelLabel)}`)}
+                      className="block w-full px-4 py-2 text-left text-[18px] font-semibold text-white transition hover:bg-[#eaad2b]/15 hover:text-[#eaad2b]"
+                    >
+                      {fuelLabel}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : item === 'KM Driven' ? (
+              <div key={item} className="group relative shrink-0">
+                <button
+                  type="button"
+                  onClick={() => navigate('/search')}
+                  className="rounded-md px-3 py-1.5 text-sm font-semibold text-white/95 transition hover:bg-white/10"
+                >
+                  <span className="inline-flex items-center gap-1">
+                    {item} <FaChevronDown className="h-3 w-3 transition group-hover:rotate-180" />
+                  </span>
+                </button>
+
+                <div className="invisible absolute left-0 top-full z-20 mt-1 min-w-[250px] origin-top scale-95 rounded-b-md rounded-tr-md border border-white/10 bg-[#1a1b42] py-3 opacity-0 shadow-xl transition duration-200 group-hover:visible group-hover:scale-100 group-hover:opacity-100">
+                  {kmDrivenItems.map((kmLabel) => (
+                    <button
+                      key={kmLabel}
+                      type="button"
+                      onClick={() => navigate(`/search?q=${encodeURIComponent(kmLabel)}`)}
+                      className="block w-full px-4 py-2 text-left text-[18px] font-semibold text-white transition hover:bg-[#eaad2b]/15 hover:text-[#eaad2b]"
+                    >
+                      {kmLabel}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : item === 'Body Type' ? (
+              <div key={item} className="group relative shrink-0">
+                <button
+                  type="button"
+                  onClick={() => navigate('/search')}
+                  className="rounded-md px-3 py-1.5 text-sm font-semibold text-white/95 transition hover:bg-white/10"
+                >
+                  <span className="inline-flex items-center gap-1">
+                    {item} <FaChevronDown className="h-3 w-3 transition group-hover:rotate-180" />
+                  </span>
+                </button>
+
+                <div className="invisible absolute left-0 top-full z-20 mt-1 min-w-[170px] origin-top scale-95 rounded-b-md rounded-tr-md border border-white/10 bg-[#1a1b42] py-3 opacity-0 shadow-xl transition duration-200 group-hover:visible group-hover:scale-100 group-hover:opacity-100">
+                  {bodyTypeItems.map((bodyTypeLabel) => (
+                    <button
+                      key={bodyTypeLabel}
+                      type="button"
+                      onClick={() => navigate(`/search?q=${encodeURIComponent(bodyTypeLabel)}`)}
+                      className="block w-full px-4 py-2 text-left text-[18px] font-semibold text-white transition hover:bg-[#eaad2b]/15 hover:text-[#eaad2b]"
+                    >
+                      {bodyTypeLabel}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : item === 'Transmission' ? (
+              <div key={item} className="group relative shrink-0">
+                <button
+                  type="button"
+                  onClick={() => navigate('/search')}
+                  className="rounded-md px-3 py-1.5 text-sm font-semibold text-white/95 transition hover:bg-white/10"
+                >
+                  <span className="inline-flex items-center gap-1">
+                    {item} <FaChevronDown className="h-3 w-3 transition group-hover:rotate-180" />
+                  </span>
+                </button>
+
+                <div className="invisible absolute left-0 top-full z-20 mt-1 min-w-[170px] origin-top scale-95 rounded-b-md rounded-tr-md border border-white/10 bg-[#1a1b42] py-3 opacity-0 shadow-xl transition duration-200 group-hover:visible group-hover:scale-100 group-hover:opacity-100">
+                  {transmissionItems.map((transmissionLabel) => (
+                    <button
+                      key={transmissionLabel}
+                      type="button"
+                      onClick={() => navigate(`/search?q=${encodeURIComponent(transmissionLabel)}`)}
+                      className="block w-full px-4 py-2 text-left text-[18px] font-semibold text-white transition hover:bg-[#eaad2b]/15 hover:text-[#eaad2b]"
+                    >
+                      {transmissionLabel}
                     </button>
                   ))}
                 </div>
