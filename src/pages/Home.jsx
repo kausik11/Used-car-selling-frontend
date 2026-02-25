@@ -24,15 +24,17 @@ const Home = () => {
 
   return (
     <div className="space-y-12 pb-10">
+      <div className='absoulate'>
       <HeroCarousel />
 
-      <section className="relative z-20 mx-auto -mt-16 w-full max-w-7xl px-4 sm:-mt-20 sm:px-6 md:-mt-24 lg:px-8">
+      <section className="relative z-20 mx-auto mt-10 w-full max-w-7xl px-4 sm:-mt-42 sm:px-6 md:-mt-40 lg:-mt-12 lg:px-8">
         <div className="rounded-2xl bg-white p-4 shadow-xl md:p-5">
           <div className="mx-auto max-w-3xl">
             <SearchInput onSearch={handleHeroSearch} placeholder="Search by model, brand, fuel type, city..." delay={500} />
           </div>
         </div>
       </section>
+      </div>
 
       <ExploreByIntentSection />
       <ExploreByBodyTypeSection cars={cars} />
