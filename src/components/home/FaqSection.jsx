@@ -33,7 +33,9 @@ const FaqSection = () => {
 
   return (
     <section className="mx-auto w-full max-w-7xl px-4 pb-4 sm:px-6 lg:px-8">
-      <div className="space-y-10 rounded-3xl bg-[#141528] px-4 py-8 text-[#fdfdff] sm:px-6 md:px-10">
+      <div className="relative space-y-10 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#1f0f2e] via-[#122040] to-[#0d3434] px-4 py-8 text-[#fdfdff] shadow-[0_20px_70px_rgba(0,0,0,0.35)] sm:px-6 md:px-10">
+        <div className="pointer-events-none absolute -left-20 top-6 h-64 w-64 rounded-full bg-fuchsia-500/15 blur-3xl" />
+        <div className="pointer-events-none absolute -right-16 bottom-8 h-64 w-64 rounded-full bg-teal-400/15 blur-3xl" />
         <div className="flex items-center gap-5">
           <div className="h-px flex-1 bg-white/20" />
           <h2 className="text-center text-4xl font-black text-[#fdfdff]">Frequently Asked Questions</h2>

@@ -13,6 +13,8 @@ const exploreItems = [
   'Transmission',
 ];
 
+const priceRangeItems = ['Under 3 Lakh', '3 - 4 Lakh', '4 - 5 Lakh', '5 - 6 Lakh', '6 - 8 Lakh', '8 - 10 Lakh', 'Above 10 Lakh'];
+
 const topLinkClass = ({ isActive }) =>
   `rounded-lg px-3 py-2 text-sm font-semibold transition ${
     isActive ? 'bg-white/15 text-white' : 'text-white/90 hover:bg-white/10 hover:text-white'
@@ -104,6 +106,12 @@ const Navbar = () => {
             {/* <button type="button" className="rounded-lg px-3 py-2 text-sm font-semibold text-white/90 hover:bg-white/10">
               <span className="inline-flex items-center gap-1">More <FaChevronDown className="h-3 w-3" /></span>
             </button> */}
+            <NavLink to="/test-drive" className={topLinkClass}>
+              Test Drive
+            </NavLink>
+            <NavLink to="/contact-us" className={topLinkClass}>
+              Contact Us
+            </NavLink>
           </div>
 
           <div className="flex items-center gap-3">
@@ -176,14 +184,43 @@ const Navbar = () => {
           <span className="shrink-0 pr-3 text-sm font-bold text-white/55">Explore By</span>
 
           {exploreItems.map((item) => (
-            <button
-              key={item}
-              type="button"
-              onClick={() => navigate('/search')}
-              className="shrink-0 rounded-md px-3 py-1.5 text-sm font-semibold text-white/95 transition hover:bg-white/10"
-            >
-              <span className="inline-flex items-center gap-1">{item} <FaChevronDown className="h-3 w-3" /></span>
-            </button>
+            item === 'Price Range' ? (
+              <div key={item} className="group relative shrink-0">
+                <button
+                  type="button"
+                  onClick={() => navigate('/search')}
+                  className="rounded-md px-3 py-1.5 text-sm font-semibold text-white/95 transition hover:bg-white/10"
+                >
+                  <span className="inline-flex items-center gap-1">
+                    {item} <FaChevronDown className="h-3 w-3 transition group-hover:rotate-180" />
+                  </span>
+                </button>
+
+                <div className="invisible absolute left-0 top-full z-20 mt-1 min-w-[210px] origin-top scale-95 rounded-b-md rounded-tr-md bg-[#5a1691] py-3 opacity-0 shadow-xl transition duration-200 group-hover:visible group-hover:scale-100 group-hover:opacity-100">
+                  {priceRangeItems.map((range) => (
+                    <button
+                      key={range}
+                      type="button"
+                      onClick={() => navigate(`/search?q=${encodeURIComponent(range)}`)}
+                      className="block w-full px-4 py-2 text-left text-[34px] font-semibold text-white transition hover:bg-white/10"
+                    >
+                      {range}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <button
+                key={item}
+                type="button"
+                onClick={() => navigate('/search')}
+                className="shrink-0 rounded-md px-3 py-1.5 text-sm font-semibold text-white/95 transition hover:bg-white/10"
+              >
+                <span className="inline-flex items-center gap-1">
+                  {item} <FaChevronDown className="h-3 w-3" />
+                </span>
+              </button>
+            )
           ))}
         </div>
       </div>

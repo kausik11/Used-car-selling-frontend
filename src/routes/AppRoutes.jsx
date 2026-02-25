@@ -6,6 +6,8 @@ const Home = lazy(() => import('../pages/Home'));
 const SearchResults = lazy(() => import('../pages/SearchResults'));
 const CarDetails = lazy(() => import('../pages/CarDetails'));
 const Auth = lazy(() => import('../pages/Auth'));
+const TestDrive = lazy(() => import('../pages/TestDrive'));
+const ContactUs = lazy(() => import('../pages/ContactUs'));
 
 const AppRoutes = () => (
   <Suspense fallback={<Loader text="Loading page..." />}>
@@ -15,6 +17,8 @@ const AppRoutes = () => (
       <Route path="/signup" element={<Auth />} />
       <Route path="/search" element={<SearchResults />} />
       <Route path="/car/:id" element={<CarDetails />} />
+      <Route path="/test-drive" element={<TestDrive />} />
+      <Route path="/contact-us" element={<ContactUs />} />
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   </Suspense>

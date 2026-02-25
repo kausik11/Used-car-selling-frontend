@@ -54,7 +54,9 @@ const DemoLoveStoriesSection = () => {
 
   return (
     <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="relative space-y-8 rounded-3xl bg-[#141528] px-4 py-8 sm:px-6 md:px-8">
+      <div className="relative space-y-8 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#1f1234] via-[#101d3d] to-[#0f3136] px-4 py-8 shadow-[0_20px_70px_rgba(0,0,0,0.35)] sm:px-6 md:px-8">
+        <div className="pointer-events-none absolute -left-16 top-10 h-64 w-64 rounded-full bg-pink-500/20 blur-3xl" />
+        <div className="pointer-events-none absolute -right-20 bottom-4 h-64 w-64 rounded-full bg-cyan-400/20 blur-3xl" />
         <div className="flex items-center gap-5">
           <div className="h-px flex-1 bg-white/20" />
           <h2 className="text-center text-4xl font-black text-[#fdfdff]">Over 2 Lakh demo Love Stories</h2>
