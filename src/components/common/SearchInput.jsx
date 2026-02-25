@@ -39,18 +39,7 @@ const SearchInput = ({ value = '', onSearch, placeholder = 'Search by car, brand
 
       {/* Search icon */}
       <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5 text-[#eaad2b]/70 transition-colors duration-200 group-focus-within:text-[#eaad2b]"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={2.2}
-          aria-hidden="true"
-        >
-          <circle cx="11" cy="11" r="7" />
-          <path strokeLinecap="round" d="M21 21l-4.35-4.35" />
-        </svg>
+        <FaSearch className="h-5 w-5 text-[#eaad2b]/70 transition-colors duration-200 group-focus-within:text-[#eaad2b]" />
       </span>
 
       <input
@@ -73,18 +62,7 @@ const SearchInput = ({ value = '', onSearch, placeholder = 'Search by car, brand
         }}
         className="absolute inset-y-2 right-2 flex items-center gap-2 rounded-xl bg-[#eaad2b] px-5 text-sm font-black text-[#0f102e] transition-all duration-200 hover:bg-[#eaad2b]/85 active:scale-95"
       >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-4 w-4"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          strokeWidth={2.5}
-          aria-hidden="true"
-        >
-          <circle cx="11" cy="11" r="7" />
-          <path strokeLinecap="round" d="M21 21l-4.35-4.35" />
-        </svg>
+        <FaSearch className="h-4 w-4" />
         <span className="hidden sm:inline">Search</span>
       </button>
     </div>
