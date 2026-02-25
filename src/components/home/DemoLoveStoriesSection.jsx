@@ -22,7 +22,7 @@ const LOVE_STORIES = [
     id: 'madhulika',
     name: 'Madhulika Singh',
     city: 'Lucknow',
-    quote: "Spinny helped us find a family car that's great for daily commutes and long trips.",
+    quote: "demo helped us find a family car that's great for daily commutes and long trips.",
     image:
       'https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80',
   },
@@ -30,7 +30,7 @@ const LOVE_STORIES = [
     id: 'pazhanian',
     name: 'Pazhanian',
     city: 'Chennai',
-    quote: 'Being able to spoil my kid with a safe car from Spinny has been very special for me.',
+    quote: 'Being able to spoil my kid with a safe car from demo has been very special for me.',
     image:
       'https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1200&q=80',
   },
@@ -44,7 +44,7 @@ const LOVE_STORIES = [
   },
 ];
 
-const SpinnyLoveStoriesSection = () => {
+const DemoLoveStoriesSection = () => {
   const railRef = useRef(null);
 
   const scrollNext = () => {
@@ -57,7 +57,7 @@ const SpinnyLoveStoriesSection = () => {
       <div className="relative space-y-8 rounded-3xl bg-[#141528] px-4 py-8 sm:px-6 md:px-8">
         <div className="flex items-center gap-5">
           <div className="h-px flex-1 bg-white/20" />
-          <h2 className="text-center text-4xl font-black text-[#fdfdff]">Over 2 Lakh Spinny Love Stories</h2>
+          <h2 className="text-center text-4xl font-black text-[#fdfdff]">Over 2 Lakh demo Love Stories</h2>
           <div className="h-px flex-1 bg-white/20" />
         </div>
 
@@ -77,7 +77,7 @@ const SpinnyLoveStoriesSection = () => {
                 <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#eaad2b] text-sm font-black">
                   S
                 </span>
-                <span className="text-2xl font-black tracking-tight">myspinny</span>
+                <span className="text-2xl font-black tracking-tight">mydemo</span>
               </div>
 
               <div className="absolute inset-x-4 bottom-4 text-white">
@@ -103,4 +103,4 @@ const SpinnyLoveStoriesSection = () => {
   );
 };
 
-export default SpinnyLoveStoriesSection;
+export default DemoLoveStoriesSection;

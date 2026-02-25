@@ -8,7 +8,7 @@ import ExploreByBodyTypeSection from '../components/home/ExploreByBodyTypeSectio
 import ExploreByIntentSection from '../components/home/ExploreByIntentSection';
 import ExplorePopularBrandsSection from '../components/home/ExplorePopularBrandsSection';
 import FaqSection from '../components/home/FaqSection';
-import SpinnyLoveStoriesSection from '../components/home/SpinnyLoveStoriesSection';
+import DemoLoveStoriesSection from '../components/home/DemoLoveStoriesSection';
 import WhyChooseSinghGroup from '../components/home/WhyChooseSinghGroup';
 import { useCars } from '../context/CarContext';
 
@@ -64,7 +64,7 @@ const Home = () => {
       
       <ExploreByBodyTypeSection cars={cars} />
       <ExplorePopularBrandsSection />
-      <SpinnyLoveStoriesSection />
+      <DemoLoveStoriesSection />
       <WhyChooseSinghGroup />
 
      

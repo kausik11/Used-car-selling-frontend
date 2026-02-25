@@ -16,13 +16,13 @@ const FAQ_ITEMS = [
   },
   {
     id: 'finance',
-    question: 'Q. Will Spinny help me with car finance?',
+    question: 'Q. Will demo help me with car finance?',
     answer:
       'Yes. We offer used-car financing options with transparent terms and competitive rates. You can check eligibility, compare offers, and choose a repayment plan that suits you.',
   },
   {
     id: 'money-back',
-    question: "Q. How does Spinny's money back guarantee work?",
+    question: "Q. How does demo's money back guarantee work?",
     answer:
       'If your car is covered by our 5-day money back policy, you can return it within the eligible period after delivery, subject to policy terms and vehicle condition checks.',
   },
@@ -73,12 +73,12 @@ const FaqSection = () => {
         </div>
 
         <div className="space-y-3">
-          <h3 className="text-4xl font-black text-[#fdfdff]">Why buy a used car from Spinny?</h3>
+          <h3 className="text-4xl font-black text-[#fdfdff]">Why buy a used car from demo?</h3>
           <p className="text-[22px] leading-relaxed text-[#fdfdff]/80">
-            Spinny removes uncertainty from buying a used car by combining quality checks, transparent pricing, and a
+            demo removes uncertainty from buying a used car by combining quality checks, transparent pricing, and a
             customer-first experience. Every certified car undergoes a comprehensive multi-point evaluation to ensure
             safety, reliability, and performance. You also get support with paperwork, RC transfer, financing options,
-            and doorstep assistance. With fixed prices and a trustworthy process, Spinny helps you buy a pre-owned car
+            and doorstep assistance. With fixed prices and a trustworthy process, demo helps you buy a pre-owned car
             with confidence and peace of mind.
           </p>
         </div>

@@ -1,12 +1,26 @@
-import { useEffect, useMemo, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import CarGallery from '../components/car/CarGallery';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Loader from '../components/common/Loader';
+import CarDetailsBreadcrumb from '../components/car/details/CarDetailsBreadcrumb';
+import CarDetailsEmiSection from '../components/car/details/CarDetailsEmiSection';
+import CarDetailsExploreSection from '../components/car/details/CarDetailsExploreSection';
+import CarDetailsFaqSection from '../components/car/details/CarDetailsFaqSection';
+import CarDetailsHero from '../components/car/details/CarDetailsHero';
+import CarDetailsInfoSections from '../components/car/details/CarDetailsInfoSections';
+import CarDetailsSimilarSection from '../components/car/details/CarDetailsSimilarSection';
+import {
+  BENEFITS,
+  DUMMY_CAR_IMAGES,
+  EXPLORE_MORE_ITEMS,
+  FAQ_ITEMS,
+  REASONS_TO_BUY,
+} from '../components/car/details/constants';
+import { formatNumber } from '../components/car/details/utils';
 import { useCars } from '../context/CarContext';
+import { useParams } from 'react-router-dom';
 
 const CarDetails = () => {
   const { id } = useParams();
-  const { selectedCar, fetchCarById, loading, error } = useCars();
+  const { cars, selectedCar, fetchCarById, loading, error } = useCars();
   const [downPayment, setDownPayment] = useState(150000);
   const [loanYears, setLoanYears] = useState(5);
 
@@ -14,17 +28,56 @@ const CarDetails = () => {
     fetchCarById(id);
   }, [fetchCarById, id]);
 
-  const emi = useMemo(() => {
-    if (!selectedCar) return 0;
+  const carPrice = useMemo(() => {
+    const price = Number(selectedCar?.price);
+    return Number.isFinite(price) ? price : 0;
+  }, [selectedCar?.price]);
 
-    const principal = Math.max(selectedCar.price - downPayment, 0);
+  const safeDownPayment = useMemo(() => Math.min(Math.max(downPayment, 0), carPrice), [carPrice, downPayment]);
+  const specs = selectedCar?.specifications ?? {};
+  const sourceImages = Array.isArray(selectedCar?.images) ? selectedCar.images.filter(Boolean) : [];
+  const images = sourceImages.length ? sourceImages : DUMMY_CAR_IMAGES;
+  const months = loanYears * 12;
+
+  const emi = useMemo(() => {
+    if (!selectedCar || !carPrice) return 0;
+
+    const principal = Math.max(carPrice - safeDownPayment, 0);
     const rate = 0.09 / 12;
-    const months = loanYears * 12;
 
     if (!principal || !months) return 0;
 
     return Math.round((principal * rate * (1 + rate) ** months) / ((1 + rate) ** months - 1));
-  }, [selectedCar, downPayment, loanYears]);
+  }, [carPrice, months, safeDownPayment, selectedCar]);
+
+  const loanAmount = Math.max(carPrice - safeDownPayment, 0);
+  const totalPayable = emi * months;
+
+  const selectedCarId = selectedCar?.id;
+  const similarCars = useMemo(
+    () => cars.filter((car) => String(car.id) !== String(selectedCarId)).slice(0, 4),
+    [cars, selectedCarId],
+  );
+
+  const topFeatures = useMemo(
+    () =>
+      [specs.engine && `Engine ${specs.engine}`, specs.power && `${specs.power} power`, specs.mileage && `${specs.mileage} mileage`]
+        .filter(Boolean)
+        .concat(['Reverse camera', 'Touchscreen infotainment', 'Alloy wheels']),
+    [specs.engine, specs.mileage, specs.power],
+  );
+
+  const handleDownPaymentChange = useCallback(
+    (event) => {
+      const nextValue = Number(event.target.value);
+      setDownPayment(Math.min(Math.max(nextValue, 0), carPrice));
+    },
+    [carPrice],
+  );
+
+  const handleLoanYearsChange = useCallback((event) => {
+    setLoanYears(Number(event.target.value));
+  }, []);
 
   if (loading && !selectedCar) {
     return (
@@ -43,99 +96,40 @@ const CarDetails = () => {
   }
 
   return (
-    <section className="mx-auto w-full max-w-7xl space-y-6 px-4 py-8 sm:px-6 lg:px-8">
+    <section className="mx-auto w-full max-w-7xl space-y-8 px-4 py-8 sm:px-6 lg:px-8">
+      <CarDetailsBreadcrumb car={selectedCar} />
+
       {error ? (
         <div className="rounded-xl border border-amber-300 bg-amber-50 p-3 text-sm text-amber-800">{error}</div>
       ) : null}
 
-      <div className="grid gap-6 lg:grid-cols-[1.2fr_1fr]">
-        <CarGallery images={selectedCar.images} title={selectedCar.title} />
+      <CarDetailsHero
+        car={selectedCar}
+        carPrice={carPrice}
+        emi={emi}
+        formatNumber={formatNumber}
+        images={images}
+        reasonsToBuy={REASONS_TO_BUY}
+        specs={specs}
+      />
 
-        <div className="space-y-5 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-          <div>
-            <h1 className="text-2xl font-black text-slate-900">{selectedCar.title}</h1>
-            <p className="mt-2 text-sm text-slate-600">
-              {selectedCar.year} • {selectedCar.kmDriven.toLocaleString('en-IN')} km • {selectedCar.location}
-            </p>
-            <p className="mt-4 text-3xl font-black text-slate-900">Rs {selectedCar.price.toLocaleString('en-IN')}</p>
-          </div>
+      <CarDetailsInfoSections benefits={BENEFITS} car={selectedCar} specs={specs} topFeatures={topFeatures} />
 
-          <div className="grid grid-cols-2 gap-3 text-sm">
-            <div className="rounded-xl bg-slate-50 p-3">
-              <span className="font-semibold">Fuel:</span> {selectedCar.fuelType}
-            </div>
-            <div className="rounded-xl bg-slate-50 p-3">
-              <span className="font-semibold">Transmission:</span> {selectedCar.transmission}
-            </div>
-            <div className="rounded-xl bg-slate-50 p-3">
-              <span className="font-semibold">Engine:</span> {selectedCar.specifications.engine}
-            </div>
-            <div className="rounded-xl bg-slate-50 p-3">
-              <span className="font-semibold">Seats:</span> {selectedCar.specifications.seats}
-            </div>
-            <div className="rounded-xl bg-slate-50 p-3">
-              <span className="font-semibold">Power:</span> {selectedCar.specifications.power}
-            </div>
-            <div className="rounded-xl bg-slate-50 p-3">
-              <span className="font-semibold">Mileage:</span> {selectedCar.specifications.mileage}
-            </div>
-          </div>
+      {/* <CarDetailsEmiSection
+        carPrice={carPrice}
+        emi={emi}
+        formatNumber={formatNumber}
+        loanAmount={loanAmount}
+        loanYears={loanYears}
+        onDownPaymentChange={handleDownPaymentChange}
+        onLoanYearsChange={handleLoanYearsChange}
+        safeDownPayment={safeDownPayment}
+        totalPayable={totalPayable}
+      /> */}
 
-          <button
-            type="button"
-            className="w-full rounded-xl bg-brand-700 px-5 py-3 text-sm font-bold text-white transition hover:bg-brand-600"
-          >
-            Book Test Drive
-          </button>
-        </div>
-      </div>
-
-      <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-        <h2 className="text-xl font-black text-slate-900">EMI Calculator</h2>
-
-        <div className="mt-5 grid gap-5 md:grid-cols-2">
-          <div>
-            <label htmlFor="downPayment" className="mb-2 block text-sm font-semibold text-slate-700">
-              Down Payment
-            </label>
-            <input
-              id="downPayment"
-              type="range"
-              min="50000"
-              max={selectedCar.price}
-              step="10000"
-              value={downPayment}
-              onChange={(event) => setDownPayment(Number(event.target.value))}
-              className="w-full accent-brand-700"
-            />
-            <p className="mt-2 text-sm text-slate-600">Rs {downPayment.toLocaleString('en-IN')}</p>
-          </div>
-
-          <div>
-            <label htmlFor="loanYears" className="mb-2 block text-sm font-semibold text-slate-700">
-              Loan Tenure (Years)
-            </label>
-            <select
-              id="loanYears"
-              value={loanYears}
-              onChange={(event) => setLoanYears(Number(event.target.value))}
-              className="h-11 w-full rounded-xl border border-slate-200 px-3 text-sm outline-none focus:border-brand-500"
-            >
-              <option value={3}>3 Years</option>
-              <option value={4}>4 Years</option>
-              <option value={5}>5 Years</option>
-              <option value={6}>6 Years</option>
-              <option value={7}>7 Years</option>
-            </select>
-          </div>
-        </div>
-
-        <div className="mt-6 rounded-2xl bg-brand-50 p-5">
-          <p className="text-sm font-semibold text-brand-700">Estimated Monthly EMI</p>
-          <p className="mt-2 text-3xl font-black text-brand-700">Rs {emi.toLocaleString('en-IN')}</p>
-          <p className="mt-1 text-xs text-brand-700/80">Calculated at an indicative 9% annual interest rate.</p>
-        </div>
-      </div>
+      <CarDetailsSimilarSection cars={similarCars} />
+      <CarDetailsExploreSection items={EXPLORE_MORE_ITEMS} />
+      <CarDetailsFaqSection items={FAQ_ITEMS} />
     </section>
   );
 };

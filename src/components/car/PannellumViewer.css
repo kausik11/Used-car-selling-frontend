@@ -1,0 +1,11 @@
+.pannellum {
+  width: 100%;
+}
+
+.pannellum__viewer {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid rgb(226 232 240);
+  border-radius: 0.75rem;
+}
+

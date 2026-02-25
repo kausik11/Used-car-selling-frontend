@@ -12,7 +12,7 @@ const POPULAR_BRANDS = [
   { id: 'ford', name: 'Ford', count: '7 cars', badge: 'F' },
   { id: 'kia', name: 'Kia', count: '6 cars', badge: 'K' },
   { id: 'datsun', name: 'Datsun', count: '5 cars', badge: 'D' },
-  { id: 'spinny-max', name: 'Spinny MAX', count: '', badge: 'MAX', isBrand: false },
+  { id: 'demo-max', name: 'demo MAX', count: '', badge: 'MAX', isBrand: false },
 ];
 
 const ExplorePopularBrandsSection = () => {
