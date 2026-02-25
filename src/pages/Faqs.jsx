@@ -78,24 +78,25 @@ const Faqs = () => {
   const isSearching = normalizedQuery.length > 0;
 
   const faqs = useMemo(() => FAQ_BY_CATEGORY[activeCategory] || [], [activeCategory]);
-  const filteredByCategory = useMemo(() => {
-    if (!isSearching) return {};
-
-    return CATEGORY_ORDER.reduce((acc, category) => {
-      const items = (FAQ_BY_CATEGORY[category] || []).filter(
-        (item) =>
-          item.q.toLowerCase().includes(normalizedQuery) ||
-          item.a.toLowerCase().includes(normalizedQuery),
-      );
-
-      if (items.length) acc[category] = items;
-      return acc;
-    }, {});
-  }, [isSearching, normalizedQuery]);
-  const filteredCategories = useMemo(
-    () => CATEGORY_ORDER.filter((category) => filteredByCategory[category]?.length),
-    [filteredByCategory],
+  const allFaqs = useMemo(
+    () =>
+      CATEGORY_ORDER.flatMap((category) =>
+        (FAQ_BY_CATEGORY[category] || []).map((item, index) => ({
+          ...item,
+          category,
+          key: `${category}-${index}`,
+        })),
+      ),
+    [],
   );
+  const filteredFaqs = useMemo(() => {
+    if (!isSearching) return [];
+    return allFaqs.filter(
+      (item) =>
+        item.q.toLowerCase().includes(normalizedQuery) ||
+        item.a.toLowerCase().includes(normalizedQuery),
+    );
+  }, [allFaqs, isSearching, normalizedQuery]);
 
   return (
     <section className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
@@ -152,35 +153,30 @@ const Faqs = () => {
         <div className="mt-8 rounded-2xl border border-white/10 bg-white/5 p-4 sm:p-6">
           {isSearching ? (
             <div className="space-y-6">
-              <h2 className="text-xl font-black text-white">
-                Search Results {filteredCategories.length ? `(${filteredCategories.length} categories)` : ''}
-              </h2>
+              <h2 className="text-xl font-black text-white">Search Results ({filteredFaqs.length})</h2>
 
-              {filteredCategories.length ? (
-                filteredCategories.map((category) => (
-                  <div key={category}>
-                    <h3 className="text-sm font-bold uppercase tracking-wide text-[#eaad2b]">{category}</h3>
-                    <div className="mt-2 divide-y divide-white/10">
-                      {filteredByCategory[category].map((item, index) => {
-                        const key = `${category}-${index}`;
-                        const isOpen = openItemKey === key;
-                        return (
-                          <article key={`${key}-${item.q}`} className="py-3">
-                            <button
-                              type="button"
-                              onClick={() => setOpenItemKey((current) => (current === key ? null : key))}
-                              className="flex w-full items-center justify-between gap-4 text-left"
-                            >
-                              <span className="text-sm font-semibold text-white sm:text-base">{item.q}</span>
-                              <span className="text-white/70">{isOpen ? <FaChevronUp /> : <FaChevronDown />}</span>
-                            </button>
-                            {isOpen ? <p className="pt-3 text-sm leading-relaxed text-white/80 sm:text-base">{item.a}</p> : null}
-                          </article>
-                        );
-                      })}
-                    </div>
-                  </div>
-                ))
+              {filteredFaqs.length ? (
+                <div className="divide-y divide-white/10">
+                  {filteredFaqs.map((item) => {
+                    const isOpen = openItemKey === item.key;
+                    return (
+                      <article key={`${item.key}-${item.q}`} className="py-3">
+                        <button
+                          type="button"
+                          onClick={() => setOpenItemKey((current) => (current === item.key ? null : item.key))}
+                          className="flex w-full items-center justify-between gap-4 text-left"
+                        >
+                          <span className="space-y-1">
+                            <span className="block text-xs font-bold uppercase tracking-wide text-[#eaad2b]">{item.category}</span>
+                            <span className="block text-sm font-semibold text-white sm:text-base">{item.q}</span>
+                          </span>
+                          <span className="text-white/70">{isOpen ? <FaChevronUp /> : <FaChevronDown />}</span>
+                        </button>
+                        {isOpen ? <p className="pt-3 text-sm leading-relaxed text-white/80 sm:text-base">{item.a}</p> : null}
+                      </article>
+                    );
+                  })}
+                </div>
               ) : (
                 <p className="text-sm text-white/80">No matches found. Try another keyword.</p>
               )}
