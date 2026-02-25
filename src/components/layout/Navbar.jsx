@@ -131,6 +131,9 @@ const Navbar = () => {
             <NavLink to="/contact-us" className={topLinkClass}>
               Contact Us
             </NavLink>
+            <NavLink to="/faqs" className={topLinkClass}>
+              FAQs
+            </NavLink>
           </div>
 
           <div className="flex items-center gap-3">

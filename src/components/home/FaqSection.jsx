@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
 
 const FAQ_ITEMS = [
@@ -29,6 +30,7 @@ const FAQ_ITEMS = [
 ];
 
 const FaqSection = () => {
+  const navigate = useNavigate();
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
@@ -68,6 +70,7 @@ const FaqSection = () => {
         <div className="flex justify-center">
           <button
             type="button"
+            onClick={() => navigate('/faqs')}
             className="rounded-2xl border-2 border-[#eaad2b] px-14 py-3 text-base font-bold text-[#fdfdff] transition hover:bg-[#eaad2b] hover:text-[#0f102e]"
           >
             Visit help center
