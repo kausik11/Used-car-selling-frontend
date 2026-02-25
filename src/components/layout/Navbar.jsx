@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { FaChevronDown, FaHeart, FaRegHeart, FaTimes, FaTrash } from 'react-icons/fa';
+import { FaChevronDown, FaHeart, FaRegHeart, FaTimes, FaTrash, FaUserCircle } from 'react-icons/fa';
 import { getSavedCars, removeSavedCar, SAVED_CARS_UPDATED_EVENT } from '../../utils/savedCars';
 
 const exploreItems = [
@@ -22,6 +22,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [savedCars, setSavedCars] = useState(() => getSavedCars());
   const [isSavedModalOpen, setIsSavedModalOpen] = useState(false);
+  const [isAccountOpen, setIsAccountOpen] = useState(false);
 
   useEffect(() => {
     const syncSavedCars = () => setSavedCars(getSavedCars());
@@ -41,6 +42,28 @@ const Navbar = () => {
     setSavedCars(removeSavedCar(carId));
   };
 
+  useEffect(() => {
+    if (!isAccountOpen) return undefined;
+
+    const handleOutside = (event) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      if (target.closest('[data-account-menu]')) return;
+      setIsAccountOpen(false);
+    };
+
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') setIsAccountOpen(false);
+    };
+
+    window.addEventListener('click', handleOutside);
+    window.addEventListener('keydown', handleEscape);
+    return () => {
+      window.removeEventListener('click', handleOutside);
+      window.removeEventListener('keydown', handleEscape);
+    };
+  }, [isAccountOpen]);
+
   return (
     <header className="sticky top-0 z-50 shadow-md">
       <div className="border-b border-white/10 bg-[#0f102e]/95 backdrop-blur">
@@ -48,7 +71,7 @@ const Navbar = () => {
           <div className="flex items-center gap-5">
             <Link to="/" className="inline-flex items-center gap-2">
               <span className="rounded-md bg-rose-500 px-2 py-1 text-sm font-black uppercase text-white">S</span>
-              <span className="text-3xl font-black italic text-white">Demo</span>
+              <span className="text-3xl font-black italic text-white">Singh Group</span>
             </Link>
 
             {/* <div className="hidden items-center gap-2 md:flex">
@@ -84,6 +107,48 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-3">
+            <div className="relative" data-account-menu>
+              <button
+                type="button"
+                onClick={() => setIsAccountOpen((open) => !open)}
+                className="inline-flex h-10 items-center gap-2 rounded-full border border-white/20 px-3 text-sm font-semibold text-white transition hover:bg-white/10"
+                aria-haspopup="menu"
+                aria-expanded={isAccountOpen}
+                aria-label="Account menu"
+              >
+                <FaUserCircle className="text-base" />
+                <span className="hidden sm:inline">Account</span>
+                <FaChevronDown className={`h-3 w-3 transition ${isAccountOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {isAccountOpen ? (
+                <div className="absolute right-0 mt-2 w-48 overflow-hidden rounded-xl border border-slate-200 bg-white py-1 shadow-xl">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsAccountOpen(false);
+                      navigate('/');
+                    }}
+                    className="block w-full px-4 py-2 text-left text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
+                    role="menuitem"
+                  >
+                    Your account
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsAccountOpen(false);
+                      navigate('/login');
+                    }}
+                    className="block w-full px-4 py-2 text-left text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
+                    role="menuitem"
+                  >
+                    Login/Signup
+                  </button>
+                </div>
+              ) : null}
+            </div>
+
             <button
               type="button"
               onClick={() => setIsSavedModalOpen(true)}
@@ -100,7 +165,7 @@ const Navbar = () => {
 
             <div className="hidden lg:block">
               <p className="text-xs text-white/70">Call us at</p>
-              <p className="text-2xl font-extrabold leading-none text-white">727-727-7275</p>
+              <p className="text-2xl font-extrabold leading-none text-white">9874074477</p>
             </div>
           </div>
         </nav>

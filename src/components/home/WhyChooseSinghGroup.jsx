@@ -96,7 +96,9 @@ const WhyChooseSinghGroup = () => {
   const [activeStep, setActiveStep] = useState(0);
   const itemRefs = useRef([]);
   const timelineItemRefs = useRef([]);
+  const timelineContainerRef = useRef(null);
   const confettiCooldown = useRef(false);
+  const hasInitializedTimelineScroll = useRef(false);
 
   useEffect(() => {
     const observers = itemRefs.current.map((ref, index) => {
@@ -133,11 +135,18 @@ const WhyChooseSinghGroup = () => {
   }, [activeStep]);
 
   useEffect(() => {
-    const activeItem = timelineItemRefs.current[activeStep];
-    if (!activeItem) return;
+    if (!hasInitializedTimelineScroll.current) {
+      hasInitializedTimelineScroll.current = true;
+      return;
+    }
 
-    activeItem.scrollIntoView({
-      block: 'nearest',
+    const activeItem = timelineItemRefs.current[activeStep];
+    const container = timelineContainerRef.current;
+    if (!activeItem || !container) return;
+
+    const top = Math.max(0, activeItem.offsetTop - container.offsetTop - 24);
+    container.scrollTo({
+      top,
       behavior: 'smooth',
     });
   }, [activeStep]);
@@ -192,7 +201,7 @@ const WhyChooseSinghGroup = () => {
           {/* Right: sticky timeline */}
           <div className="relative w-1/2">
             <div className="sticky top-32 flex h-[calc(100vh-8rem)] items-start justify-center pr-10 pt-8 xl:top-36 xl:h-[calc(100vh-9rem)] xl:pt-10">
-              <div className="no-scrollbar w-full max-w-sm max-h-full overflow-y-auto">
+              <div ref={timelineContainerRef} className="no-scrollbar w-full max-w-sm max-h-full overflow-y-auto">
                 {REASONS.map((reason, index) => {
                   const isActive = activeStep === index;
                   const isPast = activeStep > index;
