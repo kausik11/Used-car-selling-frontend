@@ -95,6 +95,7 @@ const LAST_STEP = REASONS.length - 1;
 const WhyChooseSinghGroup = () => {
   const [activeStep, setActiveStep] = useState(0);
   const itemRefs = useRef([]);
+  const timelineItemRefs = useRef([]);
   const confettiCooldown = useRef(false);
 
   useEffect(() => {
@@ -131,8 +132,18 @@ const WhyChooseSinghGroup = () => {
     return () => clearTimeout(timer);
   }, [activeStep]);
 
+  useEffect(() => {
+    const activeItem = timelineItemRefs.current[activeStep];
+    if (!activeItem) return;
+
+    activeItem.scrollIntoView({
+      block: 'nearest',
+      behavior: 'smooth',
+    });
+  }, [activeStep]);
+
   return (
-    <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section className="relative z-10 mx-auto w-full max-w-7xl px-4 pb-6 sm:px-6 lg:pb-[8rem] lg:px-8">
       {/* NOTE: no overflow-hidden on outer wrapper — needed for sticky to work */}
       <div className="rounded-3xl bg-[#141528]">
 
@@ -150,7 +161,7 @@ const WhyChooseSinghGroup = () => {
         </div>
 
         {/* ── DESKTOP: sticky-scroll layout ── */}
-        <div className="hidden md:flex">
+        <div className="hidden lg:flex lg:pt-12 xl:pt-14">
 
           {/* Left: scrolling visuals */}
           <div className="w-1/2 pl-10 pr-6">
@@ -174,19 +185,25 @@ const WhyChooseSinghGroup = () => {
                 </div>
               </div>
             ))}
-            {/* bottom spacer so last item can reach center */}
-            <div className="h-[30vh]" />
+            {/* bottom spacer so sticky timeline fully exits before next section */}
+            <div className="h-[55vh] xl:h-[40vh]" />
           </div>
 
           {/* Right: sticky timeline */}
           <div className="relative w-1/2">
-            <div className="sticky top-0 flex h-screen items-center justify-center pr-10">
-              <div className="w-full max-w-sm">
+            <div className="sticky top-32 flex h-[calc(100vh-8rem)] items-start justify-center pr-10 pt-8 xl:top-36 xl:h-[calc(100vh-9rem)] xl:pt-10">
+              <div className="no-scrollbar w-full max-w-sm max-h-full overflow-y-auto">
                 {REASONS.map((reason, index) => {
                   const isActive = activeStep === index;
                   const isPast = activeStep > index;
                   return (
-                    <div key={reason.id} className="flex gap-5">
+                    <div
+                      key={reason.id}
+                      ref={(el) => {
+                        timelineItemRefs.current[index] = el;
+                      }}
+                      className="flex gap-5"
+                    >
                       {/* Bullet + connector line */}
                       <div className="flex flex-col items-center">
                         <div
@@ -211,7 +228,7 @@ const WhyChooseSinghGroup = () => {
 
                       {/* Text content */}
                       <div
-                        className={`pb-14 transition-all duration-500 ${
+                        className={`pb-10 xl:pb-14 transition-all duration-500 ${
                           isActive ? 'translate-y-0 opacity-100' : 'translate-y-1 opacity-25'
                         }`}
                       >
@@ -235,7 +252,7 @@ const WhyChooseSinghGroup = () => {
         </div>
 
         {/* ── MOBILE: stacked cards ── */}
-        <div className="space-y-0 px-4 py-10 md:hidden sm:px-6">
+        <div className="space-y-0 px-4 py-10 lg:hidden sm:px-6">
           {REASONS.map((reason, index) => (
             <div key={reason.id} className="flex gap-4">
               {/* Bullet + line */}
