@@ -6,6 +6,9 @@ import SearchInput from '../components/common/SearchInput';
 import Loader from '../components/common/Loader';
 import ExploreByBodyTypeSection from '../components/home/ExploreByBodyTypeSection';
 import ExploreByIntentSection from '../components/home/ExploreByIntentSection';
+import ExplorePopularBrandsSection from '../components/home/ExplorePopularBrandsSection';
+import FaqSection from '../components/home/FaqSection';
+import SpinnyLoveStoriesSection from '../components/home/SpinnyLoveStoriesSection';
 import { useCars } from '../context/CarContext';
 
 const Home = () => {
@@ -33,6 +36,8 @@ const Home = () => {
 
       <ExploreByIntentSection />
       <ExploreByBodyTypeSection cars={cars} />
+      <ExplorePopularBrandsSection />
+      <SpinnyLoveStoriesSection />
 
       <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-5 flex items-center justify-between">
@@ -56,6 +61,8 @@ const Home = () => {
 
         {!loading ? <CarList cars={featuredCars} /> : null}
       </section>
+
+      <FaqSection />
     </div>
   );
 };
