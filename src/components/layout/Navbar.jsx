@@ -20,7 +20,7 @@ const Navbar = () => {
 
   return (
     <header className="sticky top-0 z-50 shadow-md">
-      <div className="border-b border-white/10 bg-[#2e024f]/95 backdrop-blur">
+      <div className="border-b border-white/10 bg-[#0f102e]/95 backdrop-blur">
         <nav className="mx-auto flex w-full max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
           <div className="flex items-center gap-5">
             <Link to="/" className="inline-flex items-center gap-2">
@@ -67,7 +67,7 @@ const Navbar = () => {
         </nav>
       </div>
 
-      <div className="bg-[#5e1a90] text-white">
+      <div className="bg-[#1a1b42] text-white">
         <div className="mx-auto flex w-full max-w-7xl items-center gap-2 overflow-x-auto px-4 py-2.5 sm:px-6 lg:px-8">
           <span className="shrink-0 pr-3 text-sm font-bold text-white/55">Explore By</span>
 

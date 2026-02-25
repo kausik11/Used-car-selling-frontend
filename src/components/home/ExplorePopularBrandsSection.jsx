@@ -20,11 +20,11 @@ const ExplorePopularBrandsSection = () => {
 
   return (
     <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="space-y-8 rounded-3xl bg-[#f7f5f9] px-4 py-8 sm:px-6 md:px-8">
+      <div className="space-y-8 rounded-3xl bg-[#141528] px-4 py-8 sm:px-6 md:px-8">
         <div className="flex items-center gap-5">
-          <div className="h-px flex-1 bg-slate-300" />
-          <h2 className="text-center text-4xl font-black text-[#220a67]">Explore Popular Brands</h2>
-          <div className="h-px flex-1 bg-slate-300" />
+          <div className="h-px flex-1 bg-white/20" />
+          <h2 className="text-center text-4xl font-black text-[#fdfdff]">Explore Popular Brands</h2>
+          <div className="h-px flex-1 bg-white/20" />
         </div>
 
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6">
@@ -41,11 +41,11 @@ const ExplorePopularBrandsSection = () => {
               }}
               className="group rounded-3xl bg-white p-4 text-center shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
             >
-              <div className="mx-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-sm font-black tracking-wide text-[#5e17a2] transition group-hover:border-[#7d2ec8] group-hover:bg-[#f3e9ff]">
+              <div className="mx-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-sm font-black tracking-wide text-[#eaad2b] transition group-hover:border-[#7d2ec8] group-hover:bg-[#f3e9ff]">
                 {brand.badge}
               </div>
-              <p className="mt-3 text-lg font-bold text-slate-600">{brand.name}</p>
-              {brand.count ? <p className="mt-0.5 text-lg font-black text-[#6c15b8]">{brand.count}</p> : null}
+              <p className="mt-3 text-lg font-bold text-[#eaad2b]">{brand.name}</p>
+              {brand.count ? <p className="mt-0.5 text-lg font-black text-[#eaad2b]">{brand.count}</p> : null}
             </button>
           ))}
         </div>
@@ -54,7 +54,7 @@ const ExplorePopularBrandsSection = () => {
           <button
             type="button"
             onClick={() => navigate('/search')}
-            className="rounded-2xl border-2 border-[#6c15b8] px-14 py-3 text-lg font-bold text-[#6c15b8] transition hover:bg-[#6c15b8] hover:text-white"
+            className="rounded-2xl bg-[#eaad2b] px-14 py-3 text-lg font-bold text-[#0f102e] transition hover:bg-[#eaad2b]/80"
           >
             View all cars
           </button>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const formatPrice = (price) => new Intl.NumberFormat('en-IN').format(price);
 
 const CarCard = memo(({ car }) => (
-  <article className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
+  <article className="group overflow-hidden rounded-2xl border border-white/10 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg">
     <div className="relative h-52 overflow-hidden">
       <img
         src={car.images?.[0]}
@@ -20,20 +20,20 @@ const CarCard = memo(({ car }) => (
     </div>
 
     <div className="space-y-3 p-4">
-      <h3 className="truncate text-lg font-bold text-slate-900">{car.title}</h3>
+      <h3 className="truncate text-lg font-bold text-[#eaad2b]">{car.title}</h3>
 
-      <p className="text-sm text-slate-600">
+      <p className="text-sm text-[#eaad2b]">
         {car.year} • {car.kmDriven.toLocaleString('en-IN')} km • {car.fuelType} • {car.transmission}
       </p>
 
       <div className="flex items-center justify-between">
-        <p className="text-xl font-black text-slate-900">Rs {formatPrice(car.price)}</p>
-        <p className="text-xs text-slate-500">EMI from Rs {formatPrice(car.emi)}</p>
+        <p className="text-xl font-black text-[#eaad2b]">Rs {formatPrice(car.price)}</p>
+        <p className="text-xs text-[#eaad2b]">EMI from Rs {formatPrice(car.emi)}</p>
       </div>
 
       <Link
         to={`/car/${car.id}`}
-        className="inline-flex w-full items-center justify-center rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-700"
+        className="inline-flex w-full items-center justify-center rounded-xl bg-[#0f102e] px-4 py-2.5 text-sm font-semibold text-[#fdfdff] transition hover:bg-brand-700"
       >
         View Details
       </Link>

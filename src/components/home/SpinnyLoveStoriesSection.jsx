@@ -53,11 +53,11 @@ const SpinnyLoveStoriesSection = () => {
 
   return (
     <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="relative space-y-8 rounded-3xl bg-[#f7f5f9] px-4 py-8 sm:px-6 md:px-8">
+      <div className="relative space-y-8 rounded-3xl bg-[#141528] px-4 py-8 sm:px-6 md:px-8">
         <div className="flex items-center gap-5">
-          <div className="h-px flex-1 bg-slate-300" />
-          <h2 className="text-center text-4xl font-black text-[#220a67]">Over 2 Lakh Spinny Love Stories</h2>
-          <div className="h-px flex-1 bg-slate-300" />
+          <div className="h-px flex-1 bg-white/20" />
+          <h2 className="text-center text-4xl font-black text-[#fdfdff]">Over 2 Lakh Spinny Love Stories</h2>
+          <div className="h-px flex-1 bg-white/20" />
         </div>
 
         <div
@@ -73,7 +73,7 @@ const SpinnyLoveStoriesSection = () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/45 to-black/10" />
 
               <div className="absolute left-4 top-4 flex items-center gap-2 text-white">
-                <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#d70f7e] text-sm font-black">
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#eaad2b] text-sm font-black">
                   S
                 </span>
                 <span className="text-2xl font-black tracking-tight">myspinny</span>
@@ -92,7 +92,7 @@ const SpinnyLoveStoriesSection = () => {
         <button
           type="button"
           onClick={scrollNext}
-          className="absolute right-2 top-1/2 z-10 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-slate-200 bg-white text-3xl font-bold text-[#6c15b8] shadow-lg transition hover:bg-[#f6efff] lg:inline-flex"
+          className="absolute right-2 top-1/2 z-10 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-[#1e1f47] text-3xl font-bold text-[#fdfdff] shadow-lg transition hover:bg-[#2a2b5a] lg:inline-flex"
           aria-label="Next stories"
         >
           ›

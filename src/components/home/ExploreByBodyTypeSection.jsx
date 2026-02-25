@@ -30,7 +30,7 @@ const BodyTypeIcon = ({ active }) => (
     viewBox="0 0 64 32"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
-    className={`h-6 w-10 ${active ? 'text-white' : 'text-[#6b1fb2]'}`}
+    className={`h-6 w-10 ${active ? 'text-white' : 'text-[#fdfdff]/70'}`}
   >
     <path
       d="M7 22h50M12 22V14l8-7h16l8 7h8v8M18 22a4 4 0 100 8 4 4 0 000-8zm28 0a4 4 0 100 8 4 4 0 000-8z"
@@ -69,14 +69,14 @@ const ExploreByBodyTypeSection = ({ cars = [] }) => {
 
   return (
     <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="space-y-8 rounded-3xl bg-[#f7f5f9] px-4 py-8 sm:px-6 md:px-8">
+      <div className="space-y-8 rounded-3xl bg-[#141528] px-4 py-8 sm:px-6 md:px-8">
         <div className="flex items-center gap-5">
-          <div className="h-px flex-1 bg-slate-300" />
-          <h2 className="text-center text-4xl font-black text-[#220a67]">Explore by Body Type</h2>
-          <div className="h-px flex-1 bg-slate-300" />
+          <div className="h-px flex-1 bg-white/20" />
+          <h2 className="text-center text-4xl font-black text-[#fdfdff]">Explore by Body Type</h2>
+          <div className="h-px flex-1 bg-white/20" />
         </div>
 
-        <div className="mx-auto flex w-fit flex-wrap items-center justify-center gap-3 rounded-2xl bg-[#eadff4] p-3">
+        <div className="mx-auto flex w-fit flex-wrap items-center justify-center gap-3 rounded-2xl bg-[#1e1f47] p-3">
           {BODY_TYPES.map((bodyType) => {
             const active = bodyType === activeBodyType;
             return (
@@ -85,7 +85,7 @@ const ExploreByBodyTypeSection = ({ cars = [] }) => {
                 type="button"
                 onClick={() => setActiveBodyType(bodyType)}
                 className={`flex min-w-[118px] flex-col items-center gap-1 rounded-xl px-4 py-2.5 transition ${
-                  active ? 'bg-[#6c15b8] text-white shadow-md' : 'text-[#6b1fb2] hover:bg-white/70'
+                  active ? 'bg-[#eaad2b] text-[#0f102e] shadow-md' : 'text-[#fdfdff]/70 hover:bg-[#eaad2b]/10'
                 }`}
               >
                 <BodyTypeIcon active={active} />
@@ -97,14 +97,14 @@ const ExploreByBodyTypeSection = ({ cars = [] }) => {
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {displayCars.map((car) => (
-            <article key={car.id} className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+            <article key={car.id} className="overflow-hidden rounded-xl border border-white/10 bg-white shadow-sm">
               <div className="h-44 overflow-hidden">
                 <img src={car.images?.[0]} alt={car.title} className="h-full w-full object-cover transition duration-500 hover:scale-105" />
               </div>
               <div className="space-y-1 px-4 py-3">
-                <p className="line-clamp-1 text-lg font-bold text-[#210a66]">{car.brand} {car.model}</p>
-                <p className="text-4xl font-black text-[#210a66]">
-                  ₹{formatLakhPrice(car.price)} <span className="text-sm font-semibold text-slate-400">onwards</span>
+                <p className="line-clamp-1 text-lg font-bold text-[#eaad2b]">{car.brand} {car.model}</p>
+                <p className="text-4xl font-black text-[#eaad2b]">
+                  ₹{formatLakhPrice(car.price)} <span className="text-sm font-semibold text-[#eaad2b]/50">onwards</span>
                 </p>
               </div>
             </article>
@@ -115,7 +115,7 @@ const ExploreByBodyTypeSection = ({ cars = [] }) => {
           <button
             type="button"
             onClick={() => navigate(`/search?q=${encodeURIComponent(activeBodyType)}`)}
-            className="rounded-2xl border-2 border-[#6c15b8] px-12 py-3 text-lg font-bold text-[#6c15b8] transition hover:bg-[#6c15b8] hover:text-white"
+            className="rounded-2xl border-2 border-[#eaad2b] px-12 py-3 text-lg font-bold text-[#fdfdff] transition hover:bg-[#eaad2b] hover:text-[#0f102e]"
           >
             View all {activeBodyType.toLowerCase()}s
           </button>

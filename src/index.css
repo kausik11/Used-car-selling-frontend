@@ -5,7 +5,9 @@
 @tailwind utilities;
 
 :root {
-  --page-bg: #f7fafc;
+  --page-bg: #0f102e;
+  --text-on-card: #eaad2b;
+  --text-light: #fdfdff;
   --brand-50: #eef4ff;
   --brand-100: #dce8ff;
   --brand-500: #2f6fed;
@@ -17,10 +19,10 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(circle at 15% 10%, rgba(47, 111, 237, 0.08), transparent 28%),
-    radial-gradient(circle at 80% 15%, rgba(25, 71, 168, 0.08), transparent 25%),
+    radial-gradient(circle at 15% 10%, rgba(255, 255, 255, 0.03), transparent 28%),
+    radial-gradient(circle at 80% 15%, rgba(255, 255, 255, 0.02), transparent 25%),
     var(--page-bg);
-  color: #0f172a;
+  color: #fdfdff;
   font-family: 'Plus Jakarta Sans', sans-serif;
 }
 

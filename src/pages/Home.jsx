@@ -9,6 +9,7 @@ import ExploreByIntentSection from '../components/home/ExploreByIntentSection';
 import ExplorePopularBrandsSection from '../components/home/ExplorePopularBrandsSection';
 import FaqSection from '../components/home/FaqSection';
 import SpinnyLoveStoriesSection from '../components/home/SpinnyLoveStoriesSection';
+import WhyChooseSinghGroup from '../components/home/WhyChooseSinghGroup';
 import { useCars } from '../context/CarContext';
 
 const Home = () => {
@@ -40,14 +41,15 @@ const Home = () => {
       <ExploreByBodyTypeSection cars={cars} />
       <ExplorePopularBrandsSection />
       <SpinnyLoveStoriesSection />
+      <WhyChooseSinghGroup />
 
       <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-5 flex items-center justify-between">
-          <h2 className="text-2xl font-black text-slate-900">Featured Cars</h2>
+          <h2 className="text-2xl font-black text-[#fdfdff]">Featured Cars</h2>
           <button
             type="button"
             onClick={() => navigate('/search')}
-            className="text-sm font-semibold text-brand-700 hover:text-brand-600"
+            className="text-sm font-semibold text-[#fdfdff]/70 hover:text-[#fdfdff]"
           >
             View all cars
           </button>

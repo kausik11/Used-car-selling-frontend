@@ -57,14 +57,14 @@ const ExploreByIntentSection = () => {
 
   return (
     <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div className="relative rounded-3xl bg-[#e9e2ef] p-4 pt-12 sm:p-6 sm:pt-14 md:p-8 md:pt-16">
+      <div className="relative rounded-3xl bg-[#141528] p-4 pt-12 sm:p-6 sm:pt-14 md:p-8 md:pt-16">
         <div className="absolute left-1/2 top-0 z-10 w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-white p-1.5 shadow-lg">
           <div className="grid grid-cols-2 gap-1">
             <button
               type="button"
               onClick={() => setActiveTab('buy')}
               className={`rounded-xl px-4 py-2.5 text-lg font-bold transition ${
-                activeTab === 'buy' ? 'bg-[#6b0cab] text-white' : 'text-[#5f228d] hover:bg-[#f3ebfb]'
+                activeTab === 'buy' ? 'bg-[#eaad2b] text-[#0f102e]' : 'text-[#eaad2b] hover:bg-[#eaad2b]/10'
               }`}
             >
               Buy car
@@ -73,7 +73,7 @@ const ExploreByIntentSection = () => {
               type="button"
               onClick={() => setActiveTab('sell')}
               className={`rounded-xl px-4 py-2.5 text-lg font-bold transition ${
-                activeTab === 'sell' ? 'bg-[#6b0cab] text-white' : 'text-[#5f228d] hover:bg-[#f3ebfb]'
+                activeTab === 'sell' ? 'bg-[#eaad2b] text-[#0f102e]' : 'text-[#eaad2b] hover:bg-[#eaad2b]/10'
               }`}
             >
               Sell car
@@ -81,10 +81,10 @@ const ExploreByIntentSection = () => {
           </div>
         </div>
 
-        <div className="rounded-2xl bg-[#f5f5f8] p-4 sm:p-6 md:p-10">
+        <div className="rounded-2xl bg-[#0d0e24] p-4 sm:p-6 md:p-10">
           {activeTab === 'buy' ? (
             <div>
-              <h2 className="text-center text-4xl font-black text-[#1e0a5e]">Spinny benefits</h2>
+              <h2 className="text-center text-4xl font-black text-[#fdfdff]">Spinny benefits</h2>
 
               <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
                 {buyBenefits.map((benefit) => (
@@ -96,8 +96,8 @@ const ExploreByIntentSection = () => {
                         {benefit.icon}
                       </div>
                     </div>
-                    <h3 className="mt-4 text-3xl font-black text-[#220a67]">{benefit.title}</h3>
-                    <p className="mt-2 text-base leading-relaxed text-[#2e0f7d]">{benefit.description}</p>
+                    <h3 className="mt-4 text-3xl font-black text-[#fdfdff]">{benefit.title}</h3>
+                    <p className="mt-2 text-base leading-relaxed text-[#fdfdff]/80">{benefit.description}</p>
                   </article>
                 ))}
               </div>
@@ -105,9 +105,9 @@ const ExploreByIntentSection = () => {
               <div className="mt-10 flex flex-col items-center justify-between gap-4 md:flex-row">
                 <button
                   type="button"
-                  className="inline-flex items-center gap-2 text-lg font-bold text-[#6c15b8] transition hover:text-[#4d0e85]"
+                  className="inline-flex items-center gap-2 text-lg font-bold text-[#fdfdff]/80 transition hover:text-[#fdfdff]"
                 >
-                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#6c15b8] text-sm text-white">
+                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#eaad2b] text-sm text-[#0f102e]">
                     ▶
                   </span>
                   Watch the film
@@ -124,7 +124,7 @@ const ExploreByIntentSection = () => {
                 <button
                   type="button"
                   onClick={() => navigate('/search')}
-                  className="text-lg font-bold text-[#6c15b8] transition hover:text-[#4d0e85]"
+                  className="text-lg font-bold text-[#fdfdff]/80 transition hover:text-[#fdfdff]"
                 >
                   Learn more ›
                 </button>
@@ -140,14 +140,14 @@ const ExploreByIntentSection = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-black/10" />
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 text-white">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#6b0cab]">▶</span>
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#eaad2b] text-[#0f102e]">▶</span>
                   <p className="max-w-[220px] text-center text-4xl font-black leading-tight">Sell your car for the best price</p>
                 </div>
               </div>
 
               <div className="flex flex-col">
-                <h3 className="text-4xl font-black text-[#1e0a5e]">Select your car brand to get started</h3>
-                <div className="mt-4 flex flex-wrap items-center gap-6 text-lg text-[#5f228d]">
+                <h3 className="text-4xl font-black text-[#fdfdff]">Select your car brand to get started</h3>
+                <div className="mt-4 flex flex-wrap items-center gap-6 text-lg text-[#fdfdff]/75">
                   <span>⚡ Instant online quote</span>
                   <span>🧾 Free car evaluation</span>
                   <span>₹ Same day payment</span>
@@ -158,7 +158,7 @@ const ExploreByIntentSection = () => {
                     <button
                       key={brand}
                       type="button"
-                      className="rounded-2xl bg-white px-4 py-4 text-sm font-bold text-[#5f228d] shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+                      className="rounded-2xl bg-white px-4 py-4 text-sm font-bold text-[#eaad2b] shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
                     >
                       {brand}
                     </button>
@@ -172,7 +172,7 @@ const ExploreByIntentSection = () => {
                   >
                     Get price
                   </button>
-                  <span className="text-4xl font-black text-[#5f228d]">
+                  <span className="text-4xl font-black text-[#fdfdff]">
                     Sell<span className="text-emerald-500">Right</span>
                   </span>
                 </div>
