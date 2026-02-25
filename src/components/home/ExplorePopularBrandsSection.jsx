@@ -1,17 +1,17 @@
 import { useNavigate } from 'react-router-dom';
 
 const POPULAR_BRANDS = [
-  { id: 'maruti', name: 'Maruti Suzuki', count: '70+ cars', badge: 'MS' },
-  { id: 'hyundai', name: 'Hyundai', count: '60+ cars', badge: 'H' },
-  { id: 'honda', name: 'Honda', count: '30+ cars', badge: 'HN' },
-  { id: 'tata', name: 'Tata', count: '20+ cars', badge: 'T' },
-  { id: 'renault', name: 'Renault', count: '10+ cars', badge: 'R' },
-  { id: 'mahindra', name: 'Mahindra', count: '10 cars', badge: 'M' },
-  { id: 'toyota', name: 'Toyota', count: '9 cars', badge: 'TY' },
-  { id: 'volkswagen', name: 'Volkswagen', count: '9 cars', badge: 'VW' },
-  { id: 'ford', name: 'Ford', count: '7 cars', badge: 'F' },
-  { id: 'kia', name: 'Kia', count: '6 cars', badge: 'K' },
-  { id: 'datsun', name: 'Datsun', count: '5 cars', badge: 'D' },
+  { id: 'maruti', name: 'Maruti Suzuki', count: '70+ cars', badge: 'MS', logo: 'https://logo.clearbit.com/marutisuzuki.com' },
+  { id: 'hyundai', name: 'Hyundai', count: '60+ cars', badge: 'H', logo: 'https://logo.clearbit.com/hyundai.com' },
+  { id: 'honda', name: 'Honda', count: '30+ cars', badge: 'HN', logo: 'https://logo.clearbit.com/honda.com' },
+  { id: 'tata', name: 'Tata', count: '20+ cars', badge: 'T', logo: 'https://logo.clearbit.com/tatamotors.com' },
+  { id: 'renault', name: 'Renault', count: '10+ cars', badge: 'R', logo: 'https://logo.clearbit.com/renault.com' },
+  { id: 'mahindra', name: 'Mahindra', count: '10 cars', badge: 'M', logo: 'https://logo.clearbit.com/mahindra.com' },
+  { id: 'toyota', name: 'Toyota', count: '9 cars', badge: 'TY', logo: 'https://logo.clearbit.com/toyota.com' },
+  { id: 'volkswagen', name: 'Volkswagen', count: '9 cars', badge: 'VW', logo: 'https://logo.clearbit.com/volkswagen.com' },
+  { id: 'ford', name: 'Ford', count: '7 cars', badge: 'F', logo: 'https://logo.clearbit.com/ford.com' },
+  { id: 'kia', name: 'Kia', count: '6 cars', badge: 'K', logo: 'https://logo.clearbit.com/kia.com' },
+  { id: 'datsun', name: 'Datsun', count: '5 cars', badge: 'D', logo: 'https://logo.clearbit.com/datsun.com' },
   { id: 'demo-max', name: 'demo MAX', count: '', badge: 'MAX', isBrand: false },
 ];
 
@@ -43,10 +43,23 @@ const ExplorePopularBrandsSection = () => {
               }}
               className="group rounded-3xl bg-white p-4 text-center shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
             >
-              <div className="mx-auto inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-sm font-black tracking-wide text-[#eaad2b] transition group-hover:border-[#7d2ec8] group-hover:bg-[#f3e9ff]">
-                {brand.badge}
+              <div className="mx-auto inline-flex h-12 w-12 items-center justify-center overflow-hidden rounded-full border border-slate-200 bg-slate-50 text-sm font-black tracking-wide text-[#eaad2b] transition group-hover:border-[#7d2ec8] group-hover:bg-[#f3e9ff]">
+                {brand.logo ? (
+                  <img
+                    src={brand.logo}
+                    alt={`${brand.name} logo`}
+                    className="h-8 w-8 object-contain"
+                    loading="lazy"
+                    onError={(event) => {
+                      event.currentTarget.style.display = 'none';
+                      const fallback = event.currentTarget.nextElementSibling;
+                      if (fallback) fallback.classList.remove('hidden');
+                    }}
+                  />
+                ) : null}
+                <span className={brand.logo ? 'hidden' : ''}>{brand.badge}</span>
               </div>
-              <p className="mt-3 text-lg font-bold text-[#eaad2b]">{brand.name}</p>
+              <p className="mt-3 text-lg font-bold text-[#050505]">{brand.name}</p>
               {brand.count ? <p className="mt-0.5 text-lg font-black text-[#eaad2b]">{brand.count}</p> : null}
             </button>
           ))}
