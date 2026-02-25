@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo } from 'react';
+import { FaChevronDown } from 'react-icons/fa';
 import { useSearchParams } from 'react-router-dom';
 import CarFilters from '../components/car/CarFilters';
 import CarList from '../components/car/CarList';
@@ -58,17 +59,20 @@ const SearchResults = () => {
               {pagination.totalPages})
             </p>
 
-            <select
-              value={filters.sortBy}
-              onChange={(event) => applyFilters({ sortBy: event.target.value })}
-              className="h-10 rounded-xl border border-slate-200 px-3 text-sm font-medium outline-none focus:border-brand-500"
-            >
-              {SORT_OPTIONS.map((option) => (
-                <option key={option.value} value={option.value}>
-                  {option.label}
-                </option>
-              ))}
-            </select>
+            <div className="relative min-w-[220px]">
+              <select
+                value={filters.sortBy}
+                onChange={(event) => applyFilters({ sortBy: event.target.value })}
+                className="h-11 w-full appearance-none rounded-lg border-2 border-slate-300 bg-white px-4 pr-10 text-sm font-semibold text-slate-800 shadow-sm outline-none transition hover:border-slate-400 focus:border-brand-600 focus:ring-2 focus:ring-brand-100 [&>option]:bg-white [&>option]:text-slate-800"
+              >
+                {SORT_OPTIONS.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+              <FaChevronDown className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-xs text-slate-600" />
+            </div>
           </div>
 
           {error ? (

@@ -9,6 +9,8 @@ const DEFAULT_FILTERS = {
   brand: '',
   fuelType: '',
   transmission: '',
+  minYear: 0,
+  maxKm: 0,
   sortBy: 'newest',
   minPrice: 0,
   maxPrice: 5000000,
@@ -49,9 +51,11 @@ const applyFilterLogic = (cars, filters) => {
     const matchesBrand = !filters.brand || car.brand === filters.brand;
     const matchesFuel = !filters.fuelType || car.fuelType === filters.fuelType;
     const matchesTransmission = !filters.transmission || car.transmission === filters.transmission;
+    const matchesYear = !filters.minYear || car.year >= filters.minYear;
+    const matchesKm = !filters.maxKm || car.kmDriven <= filters.maxKm;
     const matchesPrice = car.price >= filters.minPrice && car.price <= filters.maxPrice;
 
-    return matchesQuery && matchesBrand && matchesFuel && matchesTransmission && matchesPrice;
+    return matchesQuery && matchesBrand && matchesFuel && matchesTransmission && matchesYear && matchesKm && matchesPrice;
   });
 
   const sorted = [...filtered].sort((a, b) => {
