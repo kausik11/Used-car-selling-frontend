@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaCar } from 'react-icons/fa';
 
 const BODY_TYPES = ['Hatchback', 'Sedan', 'SUV', 'MUV'];
 
@@ -26,20 +27,7 @@ const inferBodyType = (car) => {
 };
 
 const BodyTypeIcon = ({ active }) => (
-  <svg
-    viewBox="0 0 64 32"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    className={`h-6 w-10 ${active ? 'text-white' : 'text-[#fdfdff]/70'}`}
-  >
-    <path
-      d="M7 22h50M12 22V14l8-7h16l8 7h8v8M18 22a4 4 0 100 8 4 4 0 000-8zm28 0a4 4 0 100 8 4 4 0 000-8z"
-      stroke="currentColor"
-      strokeWidth="2.2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
+  <FaCar className={`h-6 w-6 ${active ? 'text-[#0f102e]' : 'text-[#fdfdff]/70'}`} />
 );
 
 const ExploreByBodyTypeSection = ({ cars = [] }) => {

@@ -38,12 +38,8 @@ const Home = () => {
       </div>
 
       <ExploreByIntentSection />
-      <ExploreByBodyTypeSection cars={cars} />
-      <ExplorePopularBrandsSection />
-      <SpinnyLoveStoriesSection />
-      <WhyChooseSinghGroup />
 
-      <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+       <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="mb-5 flex items-center justify-between">
           <h2 className="text-2xl font-black text-[#fdfdff]">Featured Cars</h2>
           <button
@@ -65,6 +61,13 @@ const Home = () => {
 
         {!loading ? <CarList cars={featuredCars} /> : null}
       </section>
+      
+      <ExploreByBodyTypeSection cars={cars} />
+      <ExplorePopularBrandsSection />
+      <SpinnyLoveStoriesSection />
+      <WhyChooseSinghGroup />
+
+     
 
       <FaqSection />
     </div>

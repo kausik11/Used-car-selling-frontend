@@ -1,4 +1,5 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { FaChevronDown } from 'react-icons/fa';
 
 const exploreItems = [
   'Price Range',
@@ -47,16 +48,16 @@ const Navbar = () => {
 
           <div className="hidden items-center gap-1 lg:flex">
             <NavLink to="/search" className={topLinkClass}>
-              Buy car ▾
+              <span className="inline-flex items-center gap-1">Buy car <FaChevronDown className="h-3 w-3" /></span>
             </NavLink>
             <button type="button" className="rounded-lg px-3 py-2 text-sm font-semibold text-white/90 hover:bg-white/10">
-              Sell car ▾
+              <span className="inline-flex items-center gap-1">Sell car <FaChevronDown className="h-3 w-3" /></span>
             </button>
             <button type="button" className="rounded-lg px-3 py-2 text-sm font-semibold text-white/90 hover:bg-white/10">
               Service car
             </button>
             <button type="button" className="rounded-lg px-3 py-2 text-sm font-semibold text-white/90 hover:bg-white/10">
-              More ▾
+              <span className="inline-flex items-center gap-1">More <FaChevronDown className="h-3 w-3" /></span>
             </button>
           </div>
 
@@ -78,7 +79,7 @@ const Navbar = () => {
               onClick={() => navigate('/search')}
               className="shrink-0 rounded-md px-3 py-1.5 text-sm font-semibold text-white/95 transition hover:bg-white/10"
             >
-              {item} ▾
+              <span className="inline-flex items-center gap-1">{item} <FaChevronDown className="h-3 w-3" /></span>
             </button>
           ))}
         </div>

@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
+import confetti from 'canvas-confetti';
+import { FaHandshake, FaWrench, FaRoad } from 'react-icons/fa';
 
 const REASONS = [
   {
@@ -27,8 +29,8 @@ const REASONS = [
     emoji: '🤝',
     visual: (
       <div className="flex h-full w-full flex-col items-center justify-center gap-4">
-        <div className="flex h-24 w-24 items-center justify-center rounded-full border-4 border-[#eaad2b] bg-[#eaad2b]/10 text-5xl">
-          🤝
+        <div className="flex h-24 w-24 items-center justify-center rounded-full border-4 border-[#eaad2b] bg-[#eaad2b]/10 text-5xl text-[#eaad2b]">
+          <FaHandshake />
         </div>
         <p className="text-center text-2xl font-black text-[#fdfdff]">360° Support</p>
         <p className="text-center text-sm text-[#fdfdff]/60">Before, during & after every deal</p>
@@ -44,8 +46,8 @@ const REASONS = [
     emoji: '🔧',
     visual: (
       <div className="flex h-full w-full flex-col items-center justify-center gap-4">
-        <div className="flex h-24 w-24 items-center justify-center rounded-full border-4 border-[#eaad2b] bg-[#eaad2b]/10 text-5xl">
-          🔧
+        <div className="flex h-24 w-24 items-center justify-center rounded-full border-4 border-[#eaad2b] bg-[#eaad2b]/10 text-5xl text-[#eaad2b]">
+          <FaWrench />
         </div>
         <p className="text-center text-2xl font-black text-[#fdfdff]">1 Year Free Service</p>
         <p className="text-center text-sm text-[#fdfdff]/60">Zero service cost for 12 months</p>
@@ -61,8 +63,8 @@ const REASONS = [
     emoji: '🛣',
     visual: (
       <div className="flex h-full w-full flex-col items-center justify-center gap-4">
-        <div className="flex h-24 w-24 items-center justify-center rounded-full border-4 border-[#eaad2b] bg-[#eaad2b]/10 text-5xl">
-          🛣
+        <div className="flex h-24 w-24 items-center justify-center rounded-full border-4 border-[#eaad2b] bg-[#eaad2b]/10 text-5xl text-[#eaad2b]">
+          <FaRoad />
         </div>
         <p className="text-center text-2xl font-black text-[#fdfdff]">Zero Tax Hassle</p>
         <p className="text-center text-sm text-[#fdfdff]/60">Road tax fully covered by us</p>
@@ -88,9 +90,12 @@ const REASONS = [
   },
 ];
 
+const LAST_STEP = REASONS.length - 1;
+
 const WhyChooseSinghGroup = () => {
   const [activeStep, setActiveStep] = useState(0);
   const itemRefs = useRef([]);
+  const confettiCooldown = useRef(false);
 
   useEffect(() => {
     const observers = itemRefs.current.map((ref, index) => {
@@ -106,6 +111,25 @@ const WhyChooseSinghGroup = () => {
     });
     return () => observers.forEach((obs) => obs?.disconnect());
   }, []);
+
+  useEffect(() => {
+    if (activeStep !== LAST_STEP || confettiCooldown.current) return;
+
+    confettiCooldown.current = true;
+
+    confetti({
+      particleCount: 150,
+      spread: 100,
+      origin: { y: 0.6 },
+      colors: ['#eaad2b', '#fdfdff', '#0f102e', '#ffd700', '#fff4b0'],
+    });
+
+    const timer = setTimeout(() => {
+      confettiCooldown.current = false;
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [activeStep]);
 
   return (
     <section className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">

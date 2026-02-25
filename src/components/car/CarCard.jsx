@@ -20,20 +20,21 @@ const CarCard = memo(({ car }) => (
     </div>
 
     <div className="space-y-3 p-4">
-      <h3 className="truncate text-lg font-bold text-[#eaad2b]">{car.title}</h3>
+      <h3 className="truncate text-lg font-bold text-[#0f102e]">{car.title}</h3>
 
       <p className="text-sm text-[#eaad2b]">
         {car.year} • {car.kmDriven.toLocaleString('en-IN')} km • {car.fuelType} • {car.transmission}
       </p>
 
       <div className="flex items-center justify-between">
-        <p className="text-xl font-black text-[#eaad2b]">Rs {formatPrice(car.price)}</p>
-        <p className="text-xs text-[#eaad2b]">EMI from Rs {formatPrice(car.emi)}</p>
+        {/* text-[#eaad2b]*/}
+        <p className="text-xl font-black text-[#0f102e] ">Rs {formatPrice(car.price)}</p>
+        {/* <p className="text-xs text-[#eaad2b]">EMI from Rs {formatPrice(car.emi)}</p> */}
       </div>
 
       <Link
         to={`/car/${car.id}`}
-        className="inline-flex w-full items-center justify-center rounded-xl bg-[#0f102e] px-4 py-2.5 text-sm font-semibold text-[#fdfdff] transition hover:bg-brand-700"
+        className="inline-flex w-full items-center justify-center rounded-xl bg-[#eaad2b] px-4 py-2.5 text-sm font-semibold text-[#0f102e] transition hover:bg-[#eaad2b]/85"
       >
         View Details
       </Link>

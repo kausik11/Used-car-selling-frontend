@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const SLIDES = [
   {
@@ -76,7 +77,7 @@ const HeroCarousel = () => {
             <button
               type="button"
               onClick={() => navigate('/search')}
-              className="mt-4 rounded-xl bg-rose-500 px-8 py-3 text-sm font-bold text-white transition hover:bg-rose-400 sm:text-lg"
+              className="mt-4 rounded-xl bg-[#eaad2b] px-8 py-3 text-sm font-bold text-[#0f102e] transition hover:bg-[#eaad2b]/85 sm:text-lg"
             >
               View all cars
             </button>
@@ -90,7 +91,7 @@ const HeroCarousel = () => {
         className="absolute left-3 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/25 text-2xl text-white backdrop-blur-sm transition hover:bg-black/45 sm:left-5"
         aria-label="Previous slide"
       >
-        ‹
+        <FaChevronLeft />
       </button>
 
       <button
@@ -99,7 +100,7 @@ const HeroCarousel = () => {
         className="absolute right-3 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-black/25 text-2xl text-white backdrop-blur-sm transition hover:bg-black/45 sm:right-5"
         aria-label="Next slide"
       >
-        ›
+        <FaChevronRight />
       </button>
 
       <div className="absolute bottom-6 right-6 z-20 flex items-center gap-2">

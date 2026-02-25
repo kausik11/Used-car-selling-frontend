@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FaPlay, FaChevronRight, FaBolt, FaFileAlt } from 'react-icons/fa';
 
 const buyBenefits = [
   {
@@ -84,7 +85,7 @@ const ExploreByIntentSection = () => {
         <div className="rounded-2xl bg-[#0d0e24] p-4 sm:p-6 md:p-10">
           {activeTab === 'buy' ? (
             <div>
-              <h2 className="text-center text-4xl font-black text-[#fdfdff]">Spinny benefits</h2>
+              <h2 className="text-center text-4xl font-black text-[#fdfdff]">Sinhg's benefits</h2>
 
               <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
                 {buyBenefits.map((benefit) => (
@@ -108,7 +109,7 @@ const ExploreByIntentSection = () => {
                   className="inline-flex items-center gap-2 text-lg font-bold text-[#fdfdff]/80 transition hover:text-[#fdfdff]"
                 >
                   <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#eaad2b] text-sm text-[#0f102e]">
-                    ▶
+                    <FaPlay className="h-2.5 w-2.5" />
                   </span>
                   Watch the film
                 </button>
@@ -116,7 +117,7 @@ const ExploreByIntentSection = () => {
                 <button
                   type="button"
                   onClick={() => navigate('/search')}
-                  className="w-full rounded-2xl bg-rose-500 px-10 py-3 text-xl font-black text-white transition hover:bg-rose-400 md:w-auto"
+                  className="w-full rounded-2xl bg-[#eaad2b] px-10 py-3 text-xl font-black text-[#0f102e] transition hover:bg-[#eaad2b]/85 md:w-auto"
                 >
                   Browse cars
                 </button>
@@ -124,9 +125,9 @@ const ExploreByIntentSection = () => {
                 <button
                   type="button"
                   onClick={() => navigate('/search')}
-                  className="text-lg font-bold text-[#fdfdff]/80 transition hover:text-[#fdfdff]"
+                  className="inline-flex items-center gap-1 text-lg font-bold text-[#fdfdff]/80 transition hover:text-[#fdfdff]"
                 >
-                  Learn more ›
+                  Learn more <FaChevronRight className="h-3 w-3" />
                 </button>
               </div>
             </div>
@@ -140,7 +141,7 @@ const ExploreByIntentSection = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-black/10" />
                 <div className="absolute inset-0 flex flex-col items-center justify-center gap-4 text-white">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#eaad2b] text-[#0f102e]">▶</span>
+                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#eaad2b] text-[#0f102e]"><FaPlay className="h-4 w-4" /></span>
                   <p className="max-w-[220px] text-center text-4xl font-black leading-tight">Sell your car for the best price</p>
                 </div>
               </div>
@@ -148,8 +149,8 @@ const ExploreByIntentSection = () => {
               <div className="flex flex-col">
                 <h3 className="text-4xl font-black text-[#fdfdff]">Select your car brand to get started</h3>
                 <div className="mt-4 flex flex-wrap items-center gap-6 text-lg text-[#fdfdff]/75">
-                  <span>⚡ Instant online quote</span>
-                  <span>🧾 Free car evaluation</span>
+                  <span className="inline-flex items-center gap-1.5"><FaBolt className="text-[#eaad2b]" /> Instant online quote</span>
+                  <span className="inline-flex items-center gap-1.5"><FaFileAlt className="text-[#eaad2b]" /> Free car evaluation</span>
                   <span>₹ Same day payment</span>
                 </div>
 
@@ -168,7 +169,7 @@ const ExploreByIntentSection = () => {
                 <div className="mt-7 flex flex-col items-center justify-between gap-4 sm:flex-row">
                   <button
                     type="button"
-                    className="w-full rounded-2xl bg-rose-500 px-10 py-3 text-xl font-black text-white transition hover:bg-rose-400 sm:w-auto"
+                    className="w-full rounded-2xl bg-[#eaad2b] px-10 py-3 text-xl font-black text-[#0f102e] transition hover:bg-[#eaad2b]/85 sm:w-auto"
                   >
                     Get price
                   </button>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
 
 const FAQ_ITEMS = [
   {
@@ -51,7 +52,7 @@ const FaqSection = () => {
                   className="flex w-full items-center justify-between gap-4 py-1 text-left"
                 >
                   <span className="text-lg font-bold text-[#fdfdff]">{item.question}</span>
-                  <span className="text-3xl font-bold leading-none text-[#fdfdff]/70">{isOpen ? '⌃' : '⌄'}</span>
+                  <span className="text-base text-[#fdfdff]/70">{isOpen ? <FaChevronUp /> : <FaChevronDown />}</span>
                 </button>
 
                 {isOpen ? (

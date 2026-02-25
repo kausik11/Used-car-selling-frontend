@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { FaChevronRight } from 'react-icons/fa';
 
 const LOVE_STORIES = [
   {
@@ -95,7 +96,7 @@ const SpinnyLoveStoriesSection = () => {
           className="absolute right-2 top-1/2 z-10 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-[#1e1f47] text-3xl font-bold text-[#fdfdff] shadow-lg transition hover:bg-[#2a2b5a] lg:inline-flex"
           aria-label="Next stories"
         >
-          ›
+          <FaChevronRight />
         </button>
       </div>
     </section>
