@@ -38,7 +38,7 @@ const FaqSection = () => {
         <div className="pointer-events-none absolute -right-16 bottom-8 h-64 w-64 rounded-full bg-teal-400/15 blur-3xl" />
         <div className="flex items-center gap-5">
           <div className="h-px flex-1 bg-white/20" />
-          <h2 className="text-center text-4xl font-black text-[#fdfdff]">Frequently Asked Questions</h2>
+          <h2 className="text-center text-3xl font-black text-[#fdfdff]">Frequently Asked Questions</h2>
           <div className="h-px flex-1 bg-white/20" />
         </div>
 
@@ -53,12 +53,12 @@ const FaqSection = () => {
                   onClick={() => setOpenIndex((current) => (current === index ? -1 : index))}
                   className="flex w-full items-center justify-between gap-4 py-1 text-left"
                 >
-                  <span className="text-lg font-bold text-[#fdfdff]">{item.question}</span>
+                  <span className="text-base font-bold text-[#fdfdff]">{item.question}</span>
                   <span className="text-base text-[#fdfdff]/70">{isOpen ? <FaChevronUp /> : <FaChevronDown />}</span>
                 </button>
 
                 {isOpen ? (
-                  <p className="max-w-6xl pb-2 pt-3 text-[22px] leading-relaxed text-[#fdfdff]/80">{item.answer}</p>
+                  <p className="max-w-6xl pb-2 pt-3 text-base leading-relaxed text-[#fdfdff]/80">{item.answer}</p>
                 ) : null}
               </article>
             );
@@ -68,15 +68,15 @@ const FaqSection = () => {
         <div className="flex justify-center">
           <button
             type="button"
-            className="rounded-2xl border-2 border-[#eaad2b] px-14 py-3 text-lg font-bold text-[#fdfdff] transition hover:bg-[#eaad2b] hover:text-[#0f102e]"
+            className="rounded-2xl border-2 border-[#eaad2b] px-14 py-3 text-base font-bold text-[#fdfdff] transition hover:bg-[#eaad2b] hover:text-[#0f102e]"
           >
             Visit help center
           </button>
         </div>
 
         <div className="space-y-3">
-          <h3 className="text-4xl font-black text-[#fdfdff]">Why buy a used car from demo?</h3>
-          <p className="text-[22px] leading-relaxed text-[#fdfdff]/80">
+          <h3 className="text-3xl font-black text-[#fdfdff]">Why buy a used car from demo?</h3>
+          <p className="text-base leading-relaxed text-[#fdfdff]/80">
             demo removes uncertainty from buying a used car by combining quality checks, transparent pricing, and a
             customer-first experience. Every certified car undergoes a comprehensive multi-point evaluation to ensure
             safety, reliability, and performance. You also get support with paperwork, RC transfer, financing options,

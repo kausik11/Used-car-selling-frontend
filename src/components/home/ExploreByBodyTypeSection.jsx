@@ -92,8 +92,8 @@ const ExploreByBodyTypeSection = ({ cars = [] }) => {
                 <img src={car.images?.[0]} alt={car.title} className="h-full w-full object-cover transition duration-500 hover:scale-105" />
               </div>
               <div className="space-y-1 px-4 py-3">
-                <p className="line-clamp-1 text-lg font-bold text-[#eaad2b]">{car.brand} {car.model}</p>
-                <p className="text-4xl font-black text-[#eaad2b]">
+                <p className="line-clamp-1 text-base font-bold text-[#eaad2b]">{car.brand} {car.model}</p>
+                <p className="text-2xl font-black text-[#eaad2b]">
                   ₹{formatLakhPrice(car.price)} <span className="text-sm font-semibold text-[#eaad2b]/50">onwards</span>
                 </p>
               </div>

@@ -59,7 +59,7 @@ const DemoLoveStoriesSection = () => {
         <div className="pointer-events-none absolute -right-20 bottom-4 h-64 w-64 rounded-full bg-cyan-400/20 blur-3xl" />
         <div className="flex items-center gap-5">
           <div className="h-px flex-1 bg-white/20" />
-          <h2 className="text-center text-4xl font-black text-[#fdfdff]">Over 2 Lakh demo Love Stories</h2>
+          <h2 className="text-center text-3xl font-black text-[#fdfdff]">Over 2 Lakh demo Love Stories</h2>
           <div className="h-px flex-1 bg-white/20" />
         </div>
 
@@ -79,14 +79,14 @@ const DemoLoveStoriesSection = () => {
                 <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#eaad2b] text-sm font-black">
                   S
                 </span>
-                <span className="text-2xl font-black tracking-tight">mydemo</span>
+                <span className="text-xl font-black tracking-tight">mydemo</span>
               </div>
 
               <div className="absolute inset-x-4 bottom-4 text-white">
-                <p className="text-3xl font-black">
+                <p className="text-2xl font-black">
                   {story.name} <span className="text-white/80">| {story.city}</span>
                 </p>
-                <p className="mt-2 text-lg leading-relaxed text-white/95">{story.quote}</p>
+                <p className="mt-2 text-base leading-relaxed text-white/95">{story.quote}</p>
               </div>
             </article>
           ))}

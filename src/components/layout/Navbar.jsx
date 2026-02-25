@@ -87,7 +87,11 @@ const Navbar = () => {
         <nav className="mx-auto flex w-full max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
           <div className="flex items-center gap-5">
             <Link to="/" className="inline-flex items-center gap-2">
-              <span className="rounded-md bg-rose-500 px-2 py-1 text-sm font-black uppercase text-white">S</span>
+              <img
+                src="/singh_logo.jpeg"
+                alt="Singh Group Logo"
+                className="h-10 w-10 rounded-md object-cover ring-1 ring-white/20"
+              />
               <span className="text-3xl font-black italic text-white">Singh Group</span>
             </Link>
 
